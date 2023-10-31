@@ -9,7 +9,7 @@ options = ['rock', 'paper', 'scissors']
 
 draw = {
     "rock": r'''
-   _____                         ____
+    _____                         ____
 ---'      )__                 __(     '---
       (_ /___)               (___\ _)    
       (_____)                 (_____) 
@@ -34,12 +34,6 @@ draw = {
 '''
 }
 
-#rock : paper
-#rock : scissors
-#paper : rock
-#paper : scissors
-#scissors : rock
-#scissors : paper
 combinations = {
     "rock_paper": r'''
     _____                      _______
@@ -93,7 +87,7 @@ combinations = {
 
 hands_ready = r'''
 
- _____  ______          _______     _____  
+  _____  ______          _______     _____  
  |  __ \|  ____|   /\   |  __ \ \   / /__ \ 
  | |__) | |__     /  \  | |  | \ \_/ /   ) |
  |  _  /|  __|   / /\ \ | |  | |\   /   / / 
