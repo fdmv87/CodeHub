@@ -1,21 +1,23 @@
 # Rock, Paper, Scissors Game
 
-## Python
+## Description
 
-Simple project in Python for Rock, Paper, Scissors game.
+This Python project simulates the classic Rock, Paper, Scissors game. You can play against the computer and see who wins!
 
-## Execute it and play:
+## How to Play:
 
-command line: python3 rockPaperScissors.py
+1. Open your terminal.
+2. Run the game by entering the following command:
+  
+  ```bash
+  python3 rockPaperScissors.py
+  ```
 
-choose your move:
-
-    Rock, Paper or Scissors
-
-q or Q to quit
+4. Choose your move by typing either "Rock," "Paper," or "Scissors" and press Enter.
+5. If you want to quit the game, simply type "q" or "Q" and press Enter.
 
 ## Demo
-
+```bash
   _____  ______          _______     _____  
  |  __ \|  ____|   /\   |  __ \ \   / /__ \ 
  | |__) | |__     /  \  | |  | \ \_/ /   ) |
@@ -97,3 +99,4 @@ Computer picked PAPER.
                It's a draw!
 
 You: 0                          Computer: 3
+```
