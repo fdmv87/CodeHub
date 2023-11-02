@@ -1,8 +1,7 @@
 # Image Editor
 
 ## Description
-
-
+Small tutorial to converte images to black and white using the [Pillow (PIL fork) Library](https://pillow.readthedocs.io/en/stable/index.html)
 
 ## Usage:
 
@@ -12,9 +11,13 @@
     python3 -m pip install --upgrade pip
     python3 -m pip install --upgrade Pillow
   ```
-2. 
 
-## Demo
+2. Add images you want to process to folder /input
+3. Run the script:
+  ```bash
+    python3 BlackandWhiteFilter.py
+  ```
+4. Output files will be stored in /output folder
 
 ## References
 
