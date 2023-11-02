@@ -1,7 +1,7 @@
 # Image Editor
 
 ## Description
-Small tutorial to converte images to black and white using the [Pillow (PIL fork) Library](https://pillow.readthedocs.io/en/stable/index.html)
+Small tutorial to convert images to black and white using the [Pillow (PIL fork) Library](https://pillow.readthedocs.io/en/stable/index.html)
 
 ## Usage:
 
