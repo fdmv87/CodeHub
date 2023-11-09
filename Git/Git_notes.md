@@ -61,7 +61,7 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 # Git Fundamentals
 
-![Fig 1](https://github.com/fdmv87/CodeHub/Git/main/Git_fig_1?raw=true)
+![Fig 1](Git//Git_fig_1?raw=true)
 
 
 ## Git: Your First Git Repository
