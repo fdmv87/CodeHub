@@ -61,8 +61,7 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 # Git Fundamentals
 
-![Fig 1](Git_fig_1.png?raw=true)
-
+<img width="628" alt="Git_fig_1" src="https://github.com/fdmv87/CodeHub/assets/149420235/6ec3a599-fd73-4437-a7c8-b2270e6b175a">
 
 ## Git: Your First Git Repository
 
@@ -133,7 +132,7 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 ## Git: Fixing Your Mistakes: Files and Branches in Git 
 
-![Fig 2](Git_fig_2.png?raw=true)
+<img width="706" alt="Git_fig_2" src="https://github.com/fdmv87/CodeHub/assets/149420235/7fdab76a-f10f-4367-ba52-21767c1cb35b">
 
 ##### Editei ficheiros, mas ainda não fiz add. Ou reverto pelo editor, ou pelo Git.
 ##### Pelo editor posso ter perdido as alterações (ao fechar o ficheiro perco o undo) ou ser muitos ficheiros -> neste caso editava no editor e fazia add novamente.
@@ -193,7 +192,7 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 # Git Cheat Sheet
 
-![Fig 3](Git_fig_3.png?raw=true)
+![Git_fig_3](https://github.com/fdmv87/CodeHub/assets/149420235/3ac6086a-b227-4fad-80d8-41f5edae9583)
 
 #### Creating Snapshots
 ##### Initializing a repository
