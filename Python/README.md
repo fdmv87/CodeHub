@@ -1,41 +1,26 @@
-************
-*  Python  *
-************
+#  Python
 
+Use [Jupiter Notebook](https://jupyter.org/) to create nice Python exercises, examples, dashboards, formulas, etc
 
-Prof. Charles Severance
-https://www.py4e.com/lessons
+## Imports
 
-
-
-note: https://jupyter.org/
-    Jupiter Notebook to create nice python exercises, examples, dashboards, formulas, etc
-
-Any other editor to code in python
-
-
-
-- Imports
-
-    Standard Import:
+#### Standard Import:
     import module_name
 
-    Import with an Alias:
+#### Import with an Alias:
     import module_name as alias
 
-    Specific Imports:
+#### Specific Imports:
     from module_name import function_name
 
-        This form of import allows you to directly import a specific function, class, or variable from the module. With this approach, you don't need to use the module's name as a prefix; you can use the imported name directly.
+This form of import allows you to directly import a specific function, class, or variable from the module. With this approach, you don't need to use the module's name as a prefix; you can use the imported name directly.
 
-    Import All Names from a Module:
+#### Import All Names from a Module:
     from module_name import *
 
-        This imports all the names (functions, classes, variables) from the module into your code's namespace. This is generally discouraged because it can lead to naming conflicts and make your code less clear.
+This imports all the names (functions, classes, variables) from the module into your code's namespace. This is generally discouraged because it can lead to naming conflicts and make your code less clear.
 
-
-
-- Math Operations
+## Math Operations
 
     print(1+2) = 3
     print(2-1) = 1
@@ -59,90 +44,100 @@ Any other editor to code in python
     min(x, y, z)        #1
 
 
-- Numerical Data Types
+#### Numerical Data Types
 
-    Integer: ..., -2, -1, 1, 2, 3, ...
+- **Integer**: ..., -2, -1, 1, 2, 3, ...
+- **Float**: -1.5, -3.14, 3.14, 55.5
 
-    Float: -1.5, -3.14, 3.14, 55.5
-
-
-- String Data Type
+#### String Data Type
 
     print("this is a string")
     print('this is also a string')
 
-
-- Concatenation
+#### Concatenation
 
     print("a"+"b")
 
-    - Multiple Outputs
+#### Multiple Outputs
     print("balance", 5000)  #by default, the values will be separeted by spaces
-
-    print("Iron", "Man", sep = "-")
+    print("Iron", "Man", sep = "-")         
     #Iron-Man
+#####
+    name = "Bob"
+    print("Hello, %s!" % name)
+#####     
+    age = 25
+    print("I am {} years old.".format(age))         #I am 25 years old.
+##### f-Strings (Python 3.6 and above):
+    profession = "developer"
+    print(f"I am a {profession}.")
+#####
+    x = 5
+    y = 10
+    print("The value of x is", x, "and y is", y)
+#####
+    fruits = ["apple", "orange", "banana"]
+    print(", ".join(fruits))
+##### Print to File:
+    with open("output.txt", "w") as f:
+        print("This is written to a file.", file=f)
+    
 
-
-- Comments
+## Comments
     # this is a Comments
 
-- Docstrings (documentation strings)
-    #Docstrings are retained throughout the runtime of the program (at run time)
+## Docstrings (documentation strings)
+##### Docstrings are retained throughout the runtime of the program (at run time)
     def my_function():
     """
     description:
      some description of the fucntion goes here
     """
 
-
-- Labeling, Storing and Handling Data with Variables
+## Labeling, Storing and Handling Data with Variables
 
     x = 42          #Integer
     y = "Hello"     #String
     z = 3.14        #Float
 
-notes: 
+> **_NOTES:_** 
     Python is case-sensitive.
-    can't start with number or use special characters like %
+    Variables can't start with number or use special characters like %
 
 
-- Working with Input
-    input() function returns a string.
+## Working with Input
+##### input() function returns a string.
 
     age = int(input())          #convert input string to integer
     height = float(input())     #convert input string to float
-
     a = str(32)                 #convert to string
 
 
-- Multiple Inputs
+#### Multiple Inputs
     name = input()
     age = input()
 
-- In-Place Operators (+, -, *, /, %, **, //)
+#### In-Place Operators (+, -, *, /, %, **, //)
     x = 2
     x += 3
     x *= 4
 
-Concatenation:
+#### Concatenation
     x = "test"
     x += 1          #test1
 
 
-- Booleans
-
-    True/False
-
-    compare using ==, !=, <, >, <=, >=
+#### Booleans
+##### True/False
+##### compare using ==, !=, <, >, <=, >=
 
     print("a" == "b")           #False
-
     print( int(True) )          #1
     print( int(False) )          #0
 
 
-- if/else statements
-    #Python uses identation to delimit blocks of code
+## if/else statements
+##### Python uses **identation** to delimit blocks of code
 
     if condition:
         statements
@@ -151,24 +146,22 @@ Concatenation:
     else:
         statements
 
-    one statement if:
+##### one statement if:
     print('A' if 5>4 else 'B')
 
-- While loop
-    #normally used when don't know how many iterations
+## While loop
+##### normally used when don't know how many iterations
     i = 1
     while i <= 5:
         print(i)
         i += 1
 
+#### Break and continue
+- **break**:  end loop prematurely
+- **continue**: jumps back to the top of the loop. Stops current iteration and continues with the next one.
 
-- Break and continue
-    break:  end loop prematurely
-    continue: jumps back to the top of the loop. Stops current iteration and continues with the next one.
-
-
-- For Loop
-    #used to iterate over a given sequence
+## For Loop
+##### used to iterate over a given sequence
     words = ['hello', 'world', '!']
     for word in words:
         print(word)
@@ -176,7 +169,7 @@ Concatenation:
     #world
     #!
 
-    #iterate over strings
+#### Iterate over strings
     str = 'testing for loops'
     count = 0
     for i in str:
@@ -185,22 +178,17 @@ Concatenation:
             
     print(count)   #3
 
-    for i in range(5):
-        print(i)            #print 0 to 4 in different lines
-
-
-- List Slices
+## List Slices
     x = [0,1,2,3,4,5,6]
     print(x[2:6])       #[2, 3, 4, 5]
     print(x[:7])        #[0, 1, 2, 3, 4, 5, 6]
     print(x[0:])        #[0, 1, 2, 3, 4, 5, 6]
     print(x[::2])       #[0, 2, 4, 6]
-    
     print(x[7:5:-1])    #[6]
     print(x[::-1])      #[6, 5, 4, 3, 2, 1, 0]  #revert
 
 
-- List Functions
+#### List Functions
     list = [1,2,3]
     len(list)           #3
     list.append(4)      #[1, 2, 3, 4]
@@ -214,135 +202,127 @@ Concatenation:
     list.pop()          #removes the last value from the list
     list_b = list.copy()         #copies a list to other variable
 
-- String Functions
-    format()
-    #example:
+#### String Functions
+- **format()**
+#####
     nums = [4,5,6]
     msg = 'numbers: {0}, {1}, {2}'.format(nums[0], nums[1], nums[2])    #numbers: 4, 5, 6
 
     str = 'for sale: {a}{b}'.format(a = 'T', b='1')     #for sale: T1
 
-    join()
-    #example:
+- **join()**
+#####
     msg = ', '.join(['a','b','c'])          #a, b, c
 
-    split()
-    #example:
+- **split()**
+#####
     str = 'some text goes here'
     x = str.split(' ')                      #['some', 'text', 'goes', 'here']
 
-    replace()
-    #example:
+- **replace()**
     str = 'Hello there'
     str.replace('there', 'world')           #Hello there
 
-    str.lower()
-    str.upper()
-    len(str)
-    str.capitalize()
-    str.isdigit()
-    str.isalpha()
-    str.count('o')
-    str.replace('e', 'a')
-    str*3
+- **str.lower()**
+- **str.upper()**
+- **len(str)**
+- **str.capitalize()**
+- **str.isdigit()**
+- **str.isalpha()**
+- **str.count('o')**
+- **str.replace('e', 'a')**
+- **str*3**                 #Hello thereHello thereHello there
 
 
-- Custom Functions
+## Custom Functions
     def my_function():
         <code goes here>
     
-    #example:
+#####
     def sum(x, y):
         return x+y
 
     sum(1,2)            #3
 
 
-- dir gives available funtions/methods
-    dir()
-
-    example: dir('test')
-
+## dir 
+##### gives available funtions/methods
+- **dir()**
+#####    
+    dir('test')
+#####
     l = list()
     print(dir(l))
 
-
-- Remove Whitespaces
+#### Remove Whitespaces
     var = ' test '
 
-    var.lstrip() : removes left whitespace
-    var.rstrip() : removes right whitespace
-    var.strip()  : removes both  whitespace
+- var.**lstrip()** : removes left whitespace
+- var.**rstrip()** : removes right whitespace
+- var.**strip()**  : removes both  whitespace
+
+#### Starts with
 
     var.startwith('te')  #True
 
-
-
-- Open files
+## Open files
     f = open("D:\\myfiles\welcome.txt", "r")
     print(f.read())
 
-
-
-Return the 5 first characters of the file:
+##### Return the 5 first characters of the file:
     print(f.read(5))
 
-
-Read one line of the file:
+##### Read one line of the file:
     print(f.readline())
 
-
-Read two lines of the file:
+##### Read two lines of the file:
     print(f.readline())
     print(f.readline())
 
-
-Loop through the file line by line:
+##### Loop through the file line by line:
     for x in f:
         print(x)
 
-Read all lines without looping:
+##### Read all lines without looping:
     f.readlines()
 
-Close the file when you are finish with it:
+##### Close the file when you are finish with it:
     f.close()
 
-
-- Write to an Existing File
-    "a" - Append - will append to the end of the file
-    "w" - Write - will overwrite any existing content
-
-
+## Write to an Existing File
+- **"a"** - Append - will append to the end of the file
+- **"w"** - Write - will overwrite any existing content
+#####
     f = open("demofile2.txt", "a")
     f.write("Now the file has more content!")
-    f.close()                                       #we always have to close it in order to save into the file. Otherwise it will be only in the buffer
+    f.close()                                       
+    #we always have to close it in order to save into the file. Otherwise it will be only in the buffer
 
-
-    #we can do this way, and it will auto close the file when finish to write:
+##### we can do this way, and it will auto close the file when finish to write:
     with open('file.txt', 'a') as f:
         f.write('your test here\n')
 
     f.write('more text')    #this will get an error, because the file is already closed
 
 
-- Create a New File
-    "x" - Create - will create a file, returns an error if the file exist
-    "a" - Append - will create a file if the specified file does not exist
-    "w" - Write - will create a file if the specified file does not exist
+## Create a New File
+- **"x"** - Create - will create a file, returns an error if the file exist
+- **"a"** - Append - will create a file if the specified file does not exist
+- **"w"** - Write - will create a file if the specified file does not exist
 
-Create a file called "myfile.txt":
+#### Create a file called "myfile.txt":
     f = open("myfile.txt", "x")
 
-Create a new file if it does not exist:
+#### Create a new file if it does not exist:
     f = open("myfile.txt", "w")
 
-- Delete File
-    Remove the file "demofile.txt":
+## Delete File
+##### Remove the file "demofile.txt":
 
     import os
     os.remove("demofile.txt")
 
-Check if file exists, then delete it:
+##### Check if file exists, then delete it:
 
     import os
     if os.path.exists("demofile.txt"):
@@ -351,14 +331,15 @@ Check if file exists, then delete it:
         print("The file does not exist")
 
 
-Delete Folder:
+## Delete Folder
+
     import os
     os.rmdir("myfolder")
 
 
-- Collection (List Constants & Dictionary)
+## Collection (List Constants & Dictionary)
 
-Lists
+### Lists
 
     lst = list()            #or lst = ()
     lst.append(21)
@@ -369,28 +350,28 @@ Lists
     x = [ 1, 24, 43 ]
     y = [ 'red', 98.3, [2, 5] ]
 
-iterate Lists:
+#### iterate Lists:
     friends = [ 'Joseph', 'Glenn', 'Sally' ]
     for friend in friends:
         print('Friend:', friend)
     print('Done!')
 
-#always start in position 0
+##### always start in position 0
     print(friends[0])   #Joseph
 
-Lists are Mutable:
+##### Lists are Mutable:
     lotto = [2, 14, 23, 21, 65]
     lotto[2] =  28
     print(lotto)    #[2, 14, 28, 21, 65]
 
-Size of a List:
+##### Size of a List:
     print(len(friends))  #3
 
-Check if the item occurs in the list
+##### Check if the item occurs in the list:
     words = ['spam', 'egg', 'sausage']
     print('egg' in words)           #True
     
-Check if the item is not in the list
+##### Check if the item is not in the list
     words = ['spam', 'egg', 'sausage']
     if not 'orange' in words:
         print('True')
@@ -398,50 +379,48 @@ Check if the item is not in the list
     #or
     print('orange' not in words)
 
-
-    order matters:
+#### order matters:
     [1,2] == [2,1]      #false
 
 
-- Range function:
- returns a list of numbers that range from zero to one less than the parameter
+#### Range function:
+##### returns a list of numbers that range from zero to one less than the parameter
 
     print(range(4))     #[0, 1, 2, 3]
 
     l = list(range(5, 20))      #[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-    #step - 3rd argument
+##### step - 3rd argument
     print(list(range(5, 20, 2)))        #[5, 7, 9, 11, 13, 15, 17, 19]
 
-    #backward
+##### backward
     print(list(range(7, 3, -1)))        #[7, 6, 5, 4]
 
-
+##### length
     friends = [ 'Joseph', 'Glenn', 'Sally' ]
     print(len(friends))   #3
     print(range(len(friends)))   #[0, 1, 2]
 
-Range in a For loop:
+#### Range in a For loop:
 
     friends = [ 'Joseph', 'Glenn', 'Sally' ]
     for friend in friends:
          print('Friend name: ', friend)
-
-
+##### 
     for i in range(len(friends)):
-        friend = friends[i]
-        print('Friend name: ', friend)
+        print('Friend name: ', friends[i])
 
 
-- Dictionary
-    #Dictionaries are like lists except that they use keys instead of numbers to look u values
-    #database-like operations
-    #most powerfull data Collection
-    same as:
-        #Associative Arrays - Perl/PHP
-        #Properties or Map or HashMap - Java
-        #Property Bag: C# and .Net
+### Dictionary
+##### - Dictionaries are like lists except that they use keys instead of numbers to look up values
+##### - Database-like operations
+##### - Most powerfull data Collection
+##### - Same as:
+- Associative Arrays - Perl/PHP
+- Properties or Map or HashMap - Java
+- Property Bag: C# and .Net
 
+#####
     dict = {"Fri": 20, "Thu": 6, "Sat": 1}
     dict["Thu"] = 13
     dict["Sat"] = 2
@@ -449,23 +428,20 @@ Range in a For loop:
 
     print(dict)     #{'Fri': 20, 'Thu': 13, 'Sat': 2, 'Sun': 9}
 
-
     d = dict()          # or d = {}
     d['age'] = 21
     d['name'] = 'John'
 
     print(d)            #{'age': 21, 'name': 'John'}
 
-
-- Dictionary Functions
-    get()
-
-    #if the value doesn't exist return 0
+#### Dictionary Functions
+- **get()**
+#####
     counts = { 'quincy' : 1 , 'mrugesh' : 42, 'beau': 100, '0': 10}
     print(counts.get('kris', 0))                                        #0
+    #if the value doesn't exist return 0
 
-
-- Iterate Dictionaries
+##### Iterate Dictionaries
     d = { 'chuck' : 1 , 'annie' : 42, 'jan': 100}
     for key in d:
         print(key, d[key], sep=', ')
@@ -475,7 +451,7 @@ Range in a For loop:
     #jan, 100
 
 
-- Two Iteration Variables
+##### Two Iteration Variables
 
     d = { 'chuck' : 1 , 'annie' : 42, 'jan': 100}
     for key,val in d.items():
@@ -486,11 +462,11 @@ Range in a For loop:
     #jan, 100
 
 
-- Tuples
-    Another type kind of sequences like lists
-    They have elements which are indexed starting at 0
-    Tuples are immutable
-    Cannot use: append, sort, reverse
+### Tuples
+##### - Another type kind of sequences like lists
+##### - They have elements which are indexed starting at 0
+##### - Tuples are immutable
+##### - Cannot use: append, sort, reverse
 
     t = tuple()
     dir(t)              #count, index
@@ -498,13 +474,13 @@ Range in a For loop:
     x = (1, 2, 3, 4, 5)
     print(x[1])             #2
 
-    simpler and more efficient in terms of memory use and performance than lists
-    used for temporary variables  
+##### - simpler and more efficient in terms of memory use and performance than lists
+##### - used for temporary variables  
 
     (x, y) = ('4', 'fred')
     print(y)            #fred
 
-    parenthesis are optional
+##### parenthesis are optional
     x, y = '4', 'fred'
     print(y)            #fred
 
@@ -513,14 +489,14 @@ Range in a For loop:
     t = d.items()
     print(t)                    #dict_items([('quincy', 1), ('beau', 5), ('kris', 9)])
 
-    #sort by key
+##### sort by key
     print(sorted(t))            #[('beau', 5), ('kris', 9), ('quincy', 1)]
 
-    #sort by value
+##### sort by value
     d = {'quincy': 1, 'beau': 5, 'kris': 9}
     tmp = list()
 
-    #switch key, value order
+    # switch key, value order
     for k, v in d.items():
         tmp.append( (v, k) )
         
@@ -530,19 +506,19 @@ Range in a For loop:
     print(tmp)                  #[(9, 'kris'), (5, 'beau'), (1, 'quincy')]
 
 
-    #shorter version (Lambdas)
+##### shorter version (**Lambdas**)
     d = {'quincy': 1, 'beau': 5, 'kris': 9}
     print( sorted ( [ (v, k) for k, v in d.items() ] ) )            #[(1, 'quincy'), (5, 'beau'), (9, 'kris')]
 
 
-    order matters:
+##### order matters:
     (1,2) == (2,1)      #False
 
 
-- Sets
-    similar to Dictionaries and Lists 
-    duplicate values will automatically get removed from the set
-    faster to check whether an item is part of a set using the in operator
+### Sets
+#### - Similar to Dictionaries and Lists 
+#### - Duplicate values will automatically get removed from the set
+#### - Faster to check whether an item is part of a set using the in operator
 
     num_set = {1, 2, 3, 4, 5}
     print(3 in num_set) #True
@@ -550,10 +526,10 @@ Range in a For loop:
     num_set.add(6)          #{1, 2, 3, 4, 5, 6}
     num_set.remove(1)       #{2, 3, 4, 5, 6}
 
-    | union
-    & intersection
-    - difference
-    ^ symmetric difference
+- **| union**
+- **& intersection**
+- **\- difference**
+- **^ symmetric difference**
 
     first = {1, 2, 3, 4, 5}
     second = {2, 3, 5, 8, 9}
@@ -562,47 +538,47 @@ Range in a For loop:
     print(first - second)           #{1, 4}
     print(first ^ second)           #{1, 4, 8, 9}
 
-    order doesn't matter
+##### order **doesn't** matter
     {1,2,3} == {3,2,1}            #True
     {1,2,3} == {3,2,1,1,1,1}      #True
 
 
-- List Comprehensions
+### List Comprehensions
     myList = [1,2,3,4,5]
     [2*item for item in myList]
     #[2, 4, 6, 8, 10]
 
-- List Comprehensions with filters
+### List Comprehensions with filters
     evens=[i*2 for i in range(10) if i*2 % 2 == 0]
     print(evens)
     #[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 
 
-- Collections Summary
-    Use Dictionaries when:
-        - you need a logical association between key:value pair.
-        - you need fast lookup for your data, based on a custom key.
-        - your data is constantly modified.
+### Collections Summary
+#### Dictionaries:
+##### - you need a logical association between key:value pair.
+##### - you need fast lookup for your data, based on a custom key.
+##### - your data is constantly modified.
 
-    Lists:
-        - collection of data that does not need random access.
-        - suitable for storing a collection of data that can be modified and access by index.
+#### Lists:
+- collection of data that does not need random access.
+- suitable for storing a collection of data that can be modified and access by index.
 
-    Set:
-        - uniqueness for the elements
+#### Set:
+- uniqueness for the elements
 
-    Tuples:
-        - when your data cannot change
+#### Tuples:
+- when your data cannot change
 
 
-- Lambdas (aka anonymous function)
+## Lambdas (aka anonymous function)
     lambda (args : expression) (value)
 
     (lambda x : x*5) (7)        #35
 
 
 
-- Regular Expressions
+## Regular Expressions
     ^           matches the beginning of a line
     $           matches the end of a line
     .           matches any character
@@ -619,9 +595,7 @@ Range in a For loop:
     (           indicates where string extraction is to start
     )           indicates where string extraction is to end
     [^ ]        not blank
-
-
-    #first import the library
+####
     import re
 
     re.search()             #Returns True or False. Similar to find() method for strings
@@ -629,40 +603,36 @@ Range in a For loop:
     re.findall()            #extract portions of a string that match your regular expression, similar to a combination of find() and slicing: var[5:10]
 
 
-    #example:
+##### example 1:
     import re
     str = 'john.smith@ab.cd.com'
-
     print(str.find('@'))
     print(re.search('@', str))
 
-
-    #example2:
+##### example 2:
     import re
     str = 'From: John Smith, To: Manuel'
-
     print(str.startswith('From:'))
     print(re.search('^From:', str))
 
-
+##### example 3:
     import re
     str = 'title-title_goes_here: description_goes_here'
     print(re.search('^t.*:', str))              #<re.Match object; span=(0, 22), match='title-title_goes_here:'>
     print(re.search('^t\S+', str))              #<re.Match object; span=(0, 22), match='title-title_goes_here:'>
 
 
-
-    - Non-Greedy matching
-    return all in the string that matches the regex
-
-    #example1:
+#### Non-Greedy matching
+##### return all in the string that matches the regex
+#####
+##### example 1:
     import re
     str =  'From: Using the : and continues'
 
     print(re.findall('^F.+:', str))         #['From: Using the :']          (Greedy)        return the longest match
     print(re.findall('^F.+?:', str))        #['From:']                      (Non-Greedy)    return the first macth
 
-    #example2:
+##### example2:
     import re
     s = 'A message from csev@umich.edu to cwen@iupui.edu about meeting @2PM'
     lst = re.findall('\\S+@\\S+', s)
@@ -670,8 +640,8 @@ Range in a For loop:
 
 
 
-- Networking: Sockets
-    -HTTP request 
+## Networking: Sockets
+### HTTP request 
 
     import socket
 
@@ -688,28 +658,28 @@ Range in a For loop:
     mysock.close()
 
 
-    #see Networking: Using urllib in Python to do the same in less code
+see Networking: Using urllib in Python section to do the same in less code
 
-- Encoding
-    ASCII American Standard Code for Information Interchange
+### Encoding
+#### ASCII American Standard Code for Information Interchange
 
-    ord() function tells us the numeric value of a simple ASCII character
-
+- **ord()** function tells us the numeric value of a simple ASCII character
+####
     print(ord('H'))     #72
     print(ord('\n'))    #10
 
-    when strings were simple, it is represented by 1 byte per character (8 bits)
-    in today modern world there are millions of characters
+##### When strings were simple, it was represented by 1 byte per character (8 bits)
+##### In today modern world there are millions of characters
 
     UTF-16 - Fixed legnth - Two bytes
     UTF-32 - Fixed legnth - Four bytes
     UTF-8 - 1-4 bytes   - dynamic length - recomended practice for encoding data to be exchanged between systems
 
-    in Python 3 all strings internally are Unicode
-    when "talking" to network or databases we have to encode and decode data (usually to UTF-8)
+##### In Python 3 all strings internally are Unicode
+##### When "talking" to network or databases we have to encode and decode data (usually to UTF-8)
 
 
-- Networking: Using urllib in Python
+### Networking: Using urllib in Python
     
     import urllib.request, urllib.parse, urllib.error
 
@@ -718,23 +688,23 @@ Range in a For loop:
         print(line.decode().strip())
 
 
-    - reading web pages
+##### reading web pages
     import urllib.request, urllib.parse, urllib.error
+
     fhand = urllib.request.urlopen('http://data.pr4e.org/page1.htm')
     for line in fhand:
         print(line.decode().strip())
 
 
 
-- Networking: Web Scraping with Python
-    "spidering the web" or "web crawling"
-    pull data
-    monitoring
-    make a database for search engine
-
-    Make it more simple using the library BeautifulSoup
-
-    install it 
+### Networking: Web Scraping with Python
+##### - "spidering the web" or "web crawling"
+##### - pull data
+##### - monitoring
+##### - make a database for search engine
+####
+##### Make it more simple using the library **BeautifulSoup**
+##### install it first
 
         import urllib.request, urllib.parse, urllib.error
         from bs4 import BeautifulSoup
@@ -754,7 +724,7 @@ Range in a For loop:
             print(tag.get('href', None))
 
 
-- Web Services: XML Schema
+## Web Services: XML Schema
 
     import xml.etree.ElementTree as ET
 
@@ -772,7 +742,7 @@ Range in a For loop:
     print('Phone', tree.find('phone').text.strip())
 
 
-- Web Services: JSON (JavaScript Object Notation)
+## Web Services: JSON (JavaScript Object Notation)
     import json
     data = '''
     [
@@ -788,9 +758,7 @@ Range in a For loop:
     '''
     info = json.loads(data)
     print(info[1]['name'])
-
-
-
+##### 
 
     import json
     data = '''{
@@ -809,8 +777,7 @@ Range in a For loop:
     print('Name', info["name"])
     print('Hide:', info["email"]["hide"])
 
-
-
+##### 
 
     import json
     data = '''
@@ -834,21 +801,22 @@ Range in a For loop:
 
 
 
-- Web Services: APIs
-   - Web Services: API Rate Limiting and Security
+## Web Services: APIs
+####  Web Services: API Rate Limiting and Security
 
+Nothing yet
 
-- Python Objects
-    - And Object is a bit of self-contained Code and Data
-    - A key aspect of the Object approach is to break the problem into smaller understandable parts
-    - Objects have boundaries that allows us to ignore un-needed detail
-    - We have been using objects all along: String Objects, Integer Ibjects, Dictionary Objects, List Objects
+## Python Objects:
+- An Object is a bit of self-contained Code and Data
+- A key aspect of the Object approach is to break the problem into smaller understandable parts
+- Objects have boundaries that allows us to ignore un-needed detail
+- We have been using objects all along: String Objects, Integer Objects, Dictionary Objects, List Objects
 
-    - Definitions
-        - Class - a template -Dog
-        - Method or Message - a defined capability of a class - bark()
-        - Field or Attribute - a bit of data in a class - length
-        - Object or Instance - a particular instance of a class - Noah
+### Definitions:
+- **Class** - a template - Dog
+- **Method** or **Message** - a defined capability of a class - bark()
+- **Field** or **Attribute** - a bit of data in a class - length
+- **Object** or **Instance** - a particular instance of a class - Noah
 
     class PartyAnimal:
         x = 0
@@ -867,10 +835,11 @@ Range in a For loop:
     #So far 2
     #So far 3
 
-- Object lifecycle
-    - Objects are created, used and discarded
-    - Special methods called: 
-        - constructor: set up some instance variables to have the proper initial values when the object is created
+### Object lifecycle
+- Objects are created, used and discarded
+- Special methods called: 
+    - constructor: set up some instance variables to have the proper initial values when the object is created
+#####
             class Person:
                 #constructor
                 def __init__(self, name, age):
@@ -884,10 +853,10 @@ Range in a For loop:
             print("Name:", person1.name)
             print("Age:", person1.age)
         
-        - destructor:
+#### destructor:
             def __del__(self):
                 print('I am destructed', self.x)
-    
+#####    
 
     class PartyAnimal:
         x = 0
@@ -909,14 +878,14 @@ Range in a For loop:
     print('an contains',an) #x=42
 
 
-- Inheritance
-    - reuse an existing class and inherit all the capabilities of an existing class and then add extra features
-    - another form of store and reuse
-    - write once - reuse many times
-    - new class (child) has all the capabilities of the old class (parent) - and then some more
-    - Also known as Subclass
-    - Parent Class is the Superclass
-
+### Inheritance
+- reuse an existing class and inherit all the capabilities of an existing class and then add extra features
+- another form of store and reuse
+- write once - reuse many times
+- new class (child) has all the capabilities of the old class (parent) - and then some more
+- Also known as Subclass
+- Parent Class is the Superclass
+#####
     class Animal:
     def __init__(self, name, color):
         self.name = name
@@ -937,9 +906,8 @@ Range in a For loop:
     lara.purr()
 
 
-
-    - function super()
-    #inheritance-related function that refers to the parent class.
+### function super()
+##### inheritance-related function that refers to the parent class.
 
     class A:
         def spam(self):
@@ -956,14 +924,14 @@ Range in a For loop:
     #1
 
 
-    example with list() class to avoid duplicated values:
+##### example with list() class to avoid duplicated values:
     #myList = list()                #list is a class and we can extend it
 
     class UniqueList(list):
-        def append(self, value)
-            if value in self:
+        def append(self, value):
+            if value in self:       #avoid inserting repeated values in the list
                 return
-            super().append(value)
+            super().append(value)   #call parent append method
 
     uniqueList = UniqueList()
 
@@ -975,14 +943,12 @@ Range in a For loop:
     print(uniqueList)                   #[1,2]
 
 
+##### other example to force to call __init__ of parent class first
 
-    other example to force to call __init__ of parent class first
-
-
-    class UniqueList(list):
-        
+    class UniqueList(list): 
         def __init__(self):             #this overwrites the constructor ( __init__ ) parent class
             super().__init__()          #this ensures parent __init__ is called first
+            #some code here
 
         def append(self, value)
             if value in self:
@@ -990,14 +956,13 @@ Range in a For loop:
             super().append(value)
 
 
-- Relational Databases and SQLite
+### Relational Databases and SQLite
+
+Nothing yet
 
 
 
---------------------------------------------------------
-
-*args and **kwargs
-
+## *args and **kwargs
 
     def myFun(*args, **kwargs):
         print(args)
@@ -1010,9 +975,7 @@ Range in a For loop:
     {'param1': 'test'}
 
 
---------------------------------------------------------
-
--locals()
+### locals()
 
     def myFun(*args, **kwargs):
         print(args)                 #(1, 2, 3)
@@ -1023,9 +986,8 @@ Range in a For loop:
 
 
 
-- globals()
+### globals()
     print(globals())
-
 
     msg = "global variable"
 
@@ -1035,9 +997,7 @@ Range in a For loop:
     myFun(1,2) 
 
 
---------------------------------------------------------
-
-- Try / Except
+## Try / Except
     def causeError():
         try:
             return 1/0
@@ -1047,7 +1007,7 @@ Range in a For loop:
     causeError()
 
 
-- Finally
+## Finally
     import time
 
     def causeError():
@@ -1064,7 +1024,7 @@ Range in a For loop:
     causeError()
 
 
-- Catching Exceptions by Type
+## Catching Exceptions by Type
 
     def causeError():
         try:
@@ -1079,7 +1039,7 @@ Range in a For loop:
     causeError()
 
 
-- Custom decorators
+## Custom decorators
 
     def handleException(func):
         def wrapper():
@@ -1100,7 +1060,7 @@ Range in a For loop:
     causeError()
 
 
-- Rising Exceptions
+## Rising Exceptions
     
     @handleException
     def raiseError(n):
@@ -1112,7 +1072,7 @@ Range in a For loop:
     raiseError()
 
 
-- Custom Exceptions
+## Custom Exceptions
 
     class CustomException(Exception):
         pass
@@ -1124,7 +1084,7 @@ Range in a For loop:
 
     
 
-    #example for HTTP:
+#### example for HTTP:
 
     class HttpException(Exception):
         statusCode = None
@@ -1153,9 +1113,7 @@ Range in a For loop:
     #ServerError: Status code: 500 and message is: Server is down
 
 
---------------------------------------------------------
-
-- Threads
+## Threads
     import threading
     import time
 
@@ -1176,7 +1134,7 @@ Range in a For loop:
     print(results)
 
 
-#improving this
+##### improving this
     
     import threading
     import time
@@ -1192,11 +1150,9 @@ Range in a For loop:
     print(results)
 
 
---------------------------------------------------------
+## Multiprocessing
 
-- Multiprocessing
-
-    >pip install multiprocess
+>pip install multiprocess
 
     from multiprocessing import Process
     import time
@@ -1215,9 +1171,9 @@ Range in a For loop:
 
 --------------------------------------------------------
 
-- CSV
+## CSV
 
- - Reading
+#### Reading
     import csv
 
     with open('file.csv', 'r') as f:
@@ -1227,7 +1183,7 @@ Range in a For loop:
             print(row)
 
 
-    #other way to do the same:
+##### other way to do the same:
     with open('file.csv', 'r') as f:
     reader = list(csv.reader(f, delimiter=';'))     #convert to list
     for row in reader[1:]:                          #will skip 1st row (header)
@@ -1242,12 +1198,12 @@ Range in a For loop:
 
     #{'column1': value, 'column2': value, 'column3': value, 'column4': value, ...}
 
- - Filtering Data
+#### Filtering Data
     
     with open('file.csv', 'r') as f:
         reader = list(csv.DictReader(f, delimiter=';'))
 
-    #create a list of postal codes with prime numbers only - it seems to be a prime postal code in us...
+    #create a list of postal codes with prime numbers only - it seems to be a prime postal code in US...
     primes = []
     for number in range(2, 99999):
         for factor in range(2, int(number**0.5)):
@@ -1260,8 +1216,7 @@ Range in a For loop:
     data = [row for row in data if int(row['postal code']) in primes and row['state code'] == 'MA']   #in primes and Massachutts
 
 
-
- - Writing
+## Writing
 
     with open('new_file.csv', 'r') as f:
         writer = csv.write(f)                       #default comma will be used
@@ -1269,11 +1224,9 @@ Range in a For loop:
             writer.writerow([row['place name'], row['county']])
 
 
---------------------------------------------------------
+## JSON
 
-- JSON
-
- - Loading JSON
+### Loading JSON
 
     import json
     from json import JSONDecodeError 
@@ -1284,13 +1237,13 @@ Range in a For loop:
     except JSONDecodeError:
         print('Could not parse JSON!')
 
- - Dumps JSON
+### Dumps JSON
 
     pythonDict = {"a": "apple", "b": "bear", "c": "cat"}
     json.dumps(pythonDict)
 
 
- - Custom JSON Decoders
+### Custom JSON Decoders
     
     import json
     from json import JSONDecodeError, JSONEncoder
@@ -1308,9 +1261,7 @@ Range in a For loop:
     pythonDict = {"a": Animal('dog'), "b": Animal('bear'), "c": Animal('cat')}
     json.dumps(pythonDict, cls=AnimalEncoder)
 
---------------------------------------------------------
-
-- command-line arguments
+## command-line arguments
     python example.py --help
 
     python example.py -i            #for input values or file
@@ -1325,8 +1276,8 @@ example:
     args = parser.parse_args()
     print(args.output)
 
-#running
->python example.py --output somefile.txt
+##### running:
+>python3 example.py --output somefile.txt
 
 
     #make arguments required:
@@ -1335,21 +1286,14 @@ example:
     #add help text to user:
     parser.add_argument('--output', '-o', required=True, help='The description file for the output parameter')
 
->python example.py -h
+>python3 example.py -h
 
     #add more parameters
     parser.add_argument('--text', '-t', required=True, help='The text file to write to the file')
 
 
---------------------------------------------------------
-- Functional Programming
-
--
-
-- Recursion
-
-    functions calling themselves
-
+## Recursion
+functions calling themselves
 
     def fib(x):
         if x == 0 or x == 1:
@@ -1360,278 +1304,280 @@ example:
     print(fib(4))
 
 
-- The '__main__'
+## The '\_\_main\_\_'
 
-def some_function():
-    print("This function can be reused in other scripts.")
+    def some_function():
+        print("This function can be reused in other scripts.")
 
-if __name__ == '__main__':
-    print("This code will only run when the script is the main program.")
-    some_function()
+    if __name__ == '__main__':
 
-    In this example, some_function can be imported and used in other scripts, 
-    but the print statement and the function call will only occur when this script is run directly, 
-    not when it's imported as a module.
+print("This code will only run when the script is the main program.")
+some_function()
 
+In this example, some_function can be imported and used in other scripts, 
+but the print statement and the function call will only occur when this script is run directly, 
+not when it's imported as a module.
 
-- Placeholders
 
-def hello(name="John"):
-    print("Hello %s" % name)
+## Placeholders
 
-def hello(name="John"):
-    print("Hello {}".format(name))
+    def hello(name="John"):
+        print("Hello %s" % name)
+#####
+    def hello(name="John"):
+        print("Hello {}".format(name))
+#####
+    def hello(name="John"):
+        print(f"Hello {name}")
 
-def hello(name="John"):
-    print(f"Hello {name}")
 
---------------------------------------------------------
 
+***
+***
+***
 
-::::::::::EXERCISES::::::::::
+## Code Samples
 
-def pay(hours, rate):
-    if h > 40:
-        print("Overtime")
-        pay = ( h * r ) + ( (h - 40)  * (r * 0.5) )
-    else:
-        pay = h * r
-    return pay
-
-try:
-    h = float(input("Enter your hours: "))
-    r = float(input("Enter your rate: "))
-except:
-    print("Error! Please enter a numeric value.")
-    quit()
-    
-res = pay(h, r)
-print("Pay:", res )
-
-
---------------------------------------------------------
-
-
-def greet(lang):
-    if lang == 'es':
-        return 'Hola'
-    elif lang == 'pt':
-        return 'Olá'
-    else:
-        return 'Hello'
-        
-
-lang = input("Enter your language (es, pt, en): ")
-name = input("Enter your name: ")
-print(greet(lang), name + "!")
-
-
---------------------------------------------------------
-
-#find smallest number
-
-smallest = None
-print("Before:", smallest)
-for itervar in [3, 41, 12, 9, 74, 15, 1]:
-    if smallest is None or itervar < smallest:
-        smallest = itervar
-    print("Loop:", itervar, smallest)
-
-print("Smallest:", smallest)
-
-
---------------------------------------------------------
-
-#for a given set of numbers, calculate the sum of the numbers entered, the count of the numbers and the average
-
-num = 0
-tot = 0.0
-
-while True :
-    sval = input('Enter a number: ') #string value
-    if sval == 'done' :
-        break
-    try :
-        fval = float(sval) #float value
-    except :
-        print('Invalid input')
-        continue
-    
-    num += 1
-    tot += fval
-
-
-print(tot, num, tot/num)
-
-
-
---------------------------------------------------------
-
-
-use find and string slicing to extract the portion of the string after the colon and use float function to convert.
-
-str='X-DSPAM-Confidence: 0.8475 '
-
-colon_pos=str.find(':')
-print(colon_pos)
-
-#get string between : and end of string
-portion_str=str[colon_pos+1:len(str)]
-#print(len(str))
-print(portion_str)
-
-#remove both whitespaces:
-str_number=portion_str.strip()
-
-#convert to float
-float_number=float(str_number)
-
-print(float_number)
-
-
---------------------------------------------------------
-
-Get hostname
-
-data = 'From stephen.marquez@uct.ac.za Sat Jan  5 09:14:16 2001'
-begin=data.find('@')+1
-end=data.find(' ', begin, len(data))
-
-hostname=data[begin:end]
-print(hostname)
-
-
---------------------------------------------------------
-
-write a program to read through a file and print the contents of the file (line by line) all in upper case.
-
-
-file_name = input("Enter a file name: ")
-
-try
-    f = open(file_name, r)
-except
-    print("File doens't exist!")
-    quit()
-
-for line in f:
-    print(line.rstrip().upper())
-
-f.close()
-
-
---------------------------------------------------------
-
-when encounter a new name, add a new entry to dictionary. If this is the second or later time we have seen the name, ass one to the count in the dictionary under that name.
-
-counts = dict()
-names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
-for name in names:
-    if name not in counts:
-        counts[name] = 1
-    else:
-        counts[name] = counts[name] + 1
-print(counts)
-
-#{'csev': 2, 'cwen': 2, 'zqian': 1}
-
-
-#or using get() function
-
-counts = dict()
-names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
-for name in names:
-   counts[name] = counts.get(name, 0) + 1
-print(counts)
-
-#{'csev': 2, 'cwen': 2, 'zqian': 1}
-
-
-
---------------------------------------------------------
-
-Count the letter occurs more frequently
-
-text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-
-d = dict()
-
-words = text.split()
-
-#print(words)
-
-for word in words:
-    d[word] = d.get(word, 0) + 1
-#print(d)
-
-max_word=None
-max_count=0
-for key,val in d.items():
-    if val > max_count:
-        max_count = val
-        max_word = key
-print(max_word, max_count, sep=', ')  
-
-
---------------------------------------------------------
-
-REGEX - get the hostname from a string:
-
-import re
-email = 'From email address: f.d.m.vieira@gmail.com with Subject xyz'
-host = re.findall('^From .*@([^ ]*)', email)
-print(host)
-
-
---------------------------------------------------------
-
-Networking - count words of a web page
-
-import urllib.request, urllib.parse, urllib.error
-
-fhand = urllib.request.urlopen('http://data.pr4e.org/romeo.txt')
-counts = disct()
-for line in fhand:
-    words = line.decode().strip()
-    for word in words:
-        counts[word] = counts.get(word, 0) + 1
-print (counts)
-
-
---------------------------------------------------------
-
-class Student:
-    def __init__(self, name):
-        self.name = name
-    
-    def sayHi(self):
-        print("Hi from", self.name)
-        
-s1 = Student("Amy")
-s1.sayHi()
-
-
---------------------------------------------------------
-Using decorators
-
-class Person:
-    def __init__(self, name):
-        self._name = name  # Note the underscore to indicate it's a private attribute
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if isinstance(value, str):
-            self._name = value
+    def pay(hours, rate):
+        if h > 40:
+            print("Overtime")
+            pay = ( h * r ) + ( (h - 40)  * (r * 0.5) )
         else:
-            raise ValueError("Name must be a string")
+            pay = h * r
+        return pay
 
-person = Person("Alice")
-print(person.name)  # Access the 'name' attribute using a property
-person.name = "Bob"  # Set the 'name' attribute using a property
+    try:
+        h = float(input("Enter your hours: "))
+        r = float(input("Enter your rate: "))
+    except:
+        print("Error! Please enter a numeric value.")
+        quit()
+        
+    res = pay(h, r)
+    print("Pay:", res )
+
+###
+
+    def greet(lang):
+        if lang == 'es':
+            return 'Hola'
+        elif lang == 'pt':
+            return 'Olá'
+        else:
+            return 'Hello'
+
+    lang = input("Enter your language (es, pt, en): ")
+    name = input("Enter your name: ")
+    print(greet(lang), name + "!")
+
+
+###
+
+##### find smallest number
+
+    smallest = None
+    print("Before:", smallest)
+    for itervar in [3, 41, 12, 9, 74, 15, 1]:
+        if smallest is None or itervar < smallest:
+            smallest = itervar
+        print("Loop:", itervar, smallest)
+
+    print("Smallest:", smallest)
+
+
+###
+
+##### for a given set of numbers, calculate the sum of the numbers entered, the count of the numbers and the average
+
+    num = 0
+    tot = 0.0
+
+    while True :
+        sval = input('Enter a number: ') #string value
+        if sval == 'done' :
+            break
+        try :
+            fval = float(sval) #float value
+        except :
+            print('Invalid input')
+            continue
+        
+        num += 1
+        tot += fval
+
+
+    print(tot, num, tot/num)
+
+###
+
+##### use find() and string slicing to extract the portion of the string after the colon and use float function to convert.
+
+    str='X-DSPAM-Confidence: 0.8475 '
+
+    colon_pos=str.find(':')
+    print(colon_pos)
+
+    #get string between : and end of string
+    portion_str=str[colon_pos+1:len(str)]
+    #print(len(str))
+    print(portion_str)
+
+    #remove both whitespaces:
+    str_number=portion_str.strip()
+
+    #convert to float
+    float_number=float(str_number)
+
+    print(float_number)
+
+
+###
+
+##### Get hostname
+
+    data = 'From stephen.marquez@uct.ac.za Sat Jan  5 09:14:16 2001'
+    begin=data.find('@')+1
+    end=data.find(' ', begin, len(data))
+
+    hostname=data[begin:end]
+    print(hostname)
+
+
+###
+
+##### write a program to read through a file and print the contents of the file (line by line) all in upper case.
+
+
+    file_name = input("Enter a file name: ")
+
+    try
+        f = open(file_name, r)
+    except
+        print("File doens't exist!")
+        quit()
+
+    for line in f:
+        print(line.rstrip().upper())
+
+    f.close()
+
+
+###
+
+##### when encounter a new name, add a new entry to dictionary. If this is the second or later time we have seen the name, ass one to the count in the dictionary under that name.
+
+    counts = dict()
+    names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+    for name in names:
+        if name not in counts:
+            counts[name] = 1
+        else:
+            counts[name] = counts[name] + 1
+    print(counts)
+
+    #{'csev': 2, 'cwen': 2, 'zqian': 1}
+
+#####
+    #or using get() function
+
+    counts = dict()
+    names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+    for name in names:
+        counts[name] = counts.get(name, 0) + 1
+    print(counts)
+
+    #{'csev': 2, 'cwen': 2, 'zqian': 1}
+
+
+###
+
+##### Count the letter occurs more frequently
+
+    text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+
+    d = dict()
+    words = text.split()
+
+    #print(words)
+
+    for word in words:
+        d[word] = d.get(word, 0) + 1
+    #print(d)
+
+    max_word=None
+    max_count=0
+    for key,val in d.items():
+        if val > max_count:
+            max_count = val
+            max_word = key
+    print(max_word, max_count, sep=', ')  
+
+#####
+    #or using max() instead For Loop:
+
+    max_word = max(d, key=d.get)
+    max_value = d[max_word]
+
+    print(f"The word with the maximum count is '{max_word}' with a count of {max_value}.")
+
+
+###
+
+##### REGEX - get the hostname from a string:
+
+    import re
+    email = 'From email address: f.d.m.vieira@gmail.com with Subject xyz'
+    host = re.findall('^From .*@([^ ]*)', email)
+    print(host)
+
+
+###
+##### Networking - count words of a web page
+
+    import urllib.request, urllib.parse, urllib.error
+
+    fhand = urllib.request.urlopen('http://data.pr4e.org/romeo.txt')
+    counts = dict()
+    for line in fhand:
+        words = line.decode().strip()
+        for word in words:
+            counts[word] = counts.get(word, 0) + 1
+    print (counts)
+
+###
+##### Sample of a Class 
+
+    class Student:
+        def __init__(self, name):
+            self.name = name
+        
+        def sayHi(self):
+            print("Hi from", self.name)
+            
+    s1 = Student("Amy")
+    s1.sayHi()
+
+###
+##### Using decorators
+
+    class Person:
+        def __init__(self, name):
+            self._name = name  # Note the underscore to indicate it's a private attribute
+
+        @property
+        def name(self):
+            return self._name
+
+        @name.setter
+        def name(self, value):
+            if isinstance(value, str):
+                self._name = value
+            else:
+                raise ValueError("Name must be a string")
+
+    person = Person("Alice")
+    print(person.name)  # Access the 'name' attribute using a property
+    person.name = "Bob"  # Set the 'name' attribute using a property
 
 
 
@@ -1639,52 +1585,38 @@ other decorator:
 
     @staticmethod
 
---------------------------------------------------------
+###
+##### iterate dictionary:
 
-animalList = [('a', 'aardvark'),('b', 'bear'),('c','cat')]
-animals = {i[0]: i[1] for i in animalList}
-print(animals)
-#{'a': 'aardvark', 'b': 'bear', 'c': 'cat'}
-
+    animalList = [('a', 'aardvark'),('b', 'bear'),('c','cat')]
+    animals = {i[0]: i[1] for i in animalList}
+    print(animals)
+    #{'a': 'aardvark', 'b': 'bear', 'c': 'cat'}
+######
 or 
 
-animals = {key: value for key, value in animalList}
-print(animals)
-#{'a': 'aardvark', 'b': 'bear', 'c': 'cat'}
+    animals = {key: value for key, value in animalList}
+    print(animals)
+    #{'a': 'aardvark', 'b': 'bear', 'c': 'cat'}
+
+#####
+    print(
+        [{'letter': key, 'name': value} for key, value in animals.items()]
+        )
+
+    #[{'letter': 'a', 'name': 'aardvark'}, {'letter': 'b', 'name': 'bear'}, {'letter': 'c', 'name': 'cat'}]
 
 
+###
+##### Datetime sample
 
-print(
-    [{'letter': key, 'name': value} for key, value in animals.items()]
-    )
+    from datetime import datetime
 
-#[{'letter': 'a', 'name': 'aardvark'}, {'letter': 'b', 'name': 'bear'}, {'letter': 'c', 'name': 'cat'}]
+    datetime.now()
+    datetime.now().second + 2
 
-
---------------------------------------------------------
-
-from datetime import datetime
-
-datetime.now()
-
-datetime.now().second + 2
-
-
---------------------------------------------------------
-
-myList = [5, 6, 4, 3, 1]
-sorted(myList)                  #[1, 3, 4, 5, 6]
-
-
-
-myList = [{'num':5}, {'num':6}, {'num':4}, {'num':3}, {'num':1}]
-sorted(myList, key=lambda x: x['num'])                      #[{'num': 1}, {'num': 3}, {'num': 4}, {'num': 5}, {'num': 6}]
-
-
-
---------------------------------------------------------
-
-#get current time
+###
+##### get current time custom class
 
 from datetime import datetime
 
@@ -1693,136 +1625,100 @@ def getCurrentTime():
     
 print(getCurrentTime())
 
+###
+##### Sort list
 
---------------------------------------------------------
+    myList = [5, 6, 4, 3, 1]
+    sorted(myList)                  #[1, 3, 4, 5, 6]
 
-#send and receive messages
+##### Sort dictionary
 
+    myList = [{'num':5}, {'num':6}, {'num':4}, {'num':3}, {'num':1}]
+    sorted(myList, key=lambda x: x['num'])                      #[{'num': 1}, {'num': 3}, {'num': 4}, {'num': 5}, {'num': 6}]
 
-from datetime import datetime
+###
 
-def getCurrentTime():
-    return datetime.now().strftime('%m-%d-%Y %H:%M:%S')
-    
-class Messenger:
-    def __init__(self, listeners=[]):
-        self.listeners = listeners
-        
-    def send(self, message):
-        for listener in self.listeners:
-            listener.receive(message)
-    
-    def receive(self, message):
-        pass
-    
-class SaveMessages(Messenger):
-    def __init__(self, listeners=[]):
-        super().__init__(listeners)
-        self.messages = []          #clean messages
-        
-    def receive(self, message):
-        self.messages.append({'message': message, 'time': getCurrentTime()})
-    
-    def printMessages(self):
-        for m in self.messages:
-            print(f'Message: "{m["message"]}" Time: {m["time"]}')
-        self.messages = []           #clean messages
-    
-listener = SaveMessages()
+##### open files and save with a different delimiter (pipe |)
+##### [('A', 1), ('B', 80), ('C', 10)]
+##### becomes A|1-B|80-C|10
 
-sender = Messenger([listener])
+    with open(filename) as f:
+        data = f.read()
 
-sender.send('Loggin attempt 1')
-sender.send('Loggin attempt 2')
+    data = [f'{char}'|{count} for char, count in data]
 
-listener.printMessages()
+    with open(newFilename, 'w') as f:
+        f.write('-'.join(data))
+
+###
+##### write to a file from command line input:
 
 
---------------------------------------------------------
+    from argparse import ArgumentParser
 
-#open files and save with a different delimiter (pipe |)
-#[('A', 1), ('B', 80), ('C', 10)]
-# becomes A|1-B|80-C|10
+    parser = ArgumentParser()
 
-with open(filename) as f:
-    data = f.read()
+    parser.add_argument('--output', '-o', required=True, help='The description file for the output parameter')
+    parser.add_argument('--text', '-t', required=True, help='The text file to write to the file')
 
-data = [f'{char}'|{count} for char, count in data]
+    args = parser.parse_args()
 
-with open(newFilename, 'w') as f:
-    f.write('-'.join(data))
+    with open(args.output, 'w') as f:
+        f.write(args.text + '\n')
 
+    print(f'Wrote "{args.text}" to file "{args.output}"')
 
+###
+##### iterate and replace in same line:
+##### sample of counting from 3 to 1
+    import time
 
---------------------------------------------------------
-#write to a file from command line input:
+    for x in [3,2,1]:
+        print(x, end = '', flush=True)
+        time.sleep(1)
+        print('\r', end = '', flush=True)
 
+###
+##### Sample creating graph and sql data 
 
-from argparse import ArgumentParser
+    import pandas as pd
+    import ploty.graph_objects as go
+    from sqlalchemy import *
 
-parser = ArgumentParser()
+    conn = create_engine(connection_url)
+    num_days = input("How many days?")
+    symbol = input("Symbol?")
 
-parser.add_argument('--output', '-o', required=True, help='The description file for the output parameter')
-parser.add_argument('--text', '-t', required=True, help='The text file to write to the file')
+    data = pd.read_sql("""
+    SELECT TIME_BUCKET(%s) AS day,
+        symbol,
+        MIN(price) AS low,
+        MAX(price) AS high,
+        FIRST(price) AS open,
+        LAST(price) AS close
+    FROM tick
+    WHERE symbol = %s
+    GROUP BY 2, 1
+    ORDER BY 2, 1;
+    """, conn, params = (str(num_days), symbol.upper()))
 
-args = parser.parse_args()
+    fig = go.Figure(data = [go.Candlestick(
+        x = data["day"],
+        open = data["open"],
+        high = data["high"],
+        low = data["low"],
+        close = data["close"],
+        name = symbol,
+    )])
 
-with open(args.output, 'w') as f:
-    f.write(args.text + '\n')
-
-print(f'Wrote "{args.text}" to file "{args.output}"')
-
-
---------------------------------------------------------
-#iterate and replace in same line:
- 
-#counter from 3 to 1
-import time
-
-for x in [3,2,1]:
-    print(x, end = '', flush=True)
-    time.sleep(1)
-    print('\r', end = '', flush=True)
-
-
+    fig.update_xaxes(type = "category")
+    fig.update_layout(xaxis_rangeslider_visible = False)
+    fig.show()
 
 
 --------------------------------------------------------
-Sample creating graph and sql data 
 
-import pandas as pd
-import ploty.graph_objects as go
-from sqlalchemy import *
+## References
 
-conn = create_engine(connection_url)
-num_days = input("How many days?")
-symbol = input("Symbol?")
-
-data = pd.read_sql("""
-SELECT TIME_BUCKET(%s) AS day,
-    symbol,
-    MIN(price) AS low,
-    MAX(price) AS high,
-    FIRST(price) AS open,
-    LAST(price) AS close
-FROM tick
-WHERE symbol = %s
-GROUP BY 2, 1
-ORDER BY 2, 1;
-""", conn, params = (str(num_days), symbol.upper()))
-
-fig = go.Figure(data = [go.Candlestick(
-    x = data["day"],
-    open = data["open"],
-    high = data["high"],
-    low = data["low"],
-    close = data["close"],
-    name = symbol,
-)])
-
-fig.update_xaxes(type = "category")
-fig.update_layout(xaxis_rangeslider_visible = False)
-fig.show()
-
-
---------------------------------------------------------
+Prof. Charles Severance
+https://www.py4e.com/lessons
