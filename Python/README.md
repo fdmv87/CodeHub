@@ -20,6 +20,43 @@ This form of import allows you to directly import a specific function, class, or
 
 This imports all the names (functions, classes, variables) from the module into your code's namespace. This is generally discouraged because it can lead to naming conflicts and make your code less clear.
 
+##### **example:**
+root folder:
+
+**messages.py**
+#####
+    def hello():
+        print(Hello!)
+    
+    def bye():
+        print('Bye!')
+
+**main.py**
+#####
+    import messages
+
+    messages.hello()
+    messages.bye
+##### Or
+    import messages as msg
+
+    msg.hello()
+    msg.bye()
+##### Or
+    from messages import hello, bye
+
+    hello()
+    bye()   
+##### Or (not recommended)
+    from messages import *
+
+    hello()
+    bye()
+
+### help("modules") command
+- will list all available modules
+- same as documentation: https://docs.python.org/3/py-modindex.html
+
 ## Math Operations
 
     print(1+2) = 3
@@ -178,7 +215,14 @@ This imports all the names (functions, classes, variables) from the module into 
             
     print(count)   #3
 
-## List Slices
+- **break**: used to terminate the loop entirely
+- **continue**: skips to the next iteration of the loop
+- **pass**: does nothing, acts as a placeholder
+
+## List Slicing
+##### [start:stop:step]
+##### start: inclusive
+##### stop: exclusive
     x = [0,1,2,3,4,5,6]
     print(x[2:6])       #[2, 3, 4, 5]
     print(x[:7])        #[0, 1, 2, 3, 4, 5, 6]
@@ -187,6 +231,15 @@ This imports all the names (functions, classes, variables) from the module into 
     print(x[7:5:-1])    #[6]
     print(x[::-1])      #[6, 5, 4, 3, 2, 1, 0]  #revert
 
+## String Slicing
+##### [start:stop:step]
+    name = "Slicing String"
+    print(name[0:6])
+    print(name[8:])
+
+    website1 = "http://google.com"
+    slice = slice(7,-4)
+    print(website1[slice])      #google
 
 #### List Functions
     list = [1,2,3]
@@ -202,13 +255,50 @@ This imports all the names (functions, classes, variables) from the module into 
     list.pop()          #removes the last value from the list
     list_b = list.copy()         #copies a list to other variable
 
+#### Two-dimensional List
+    a = [[1, 2, 3], [4, 5, 6]]
+    print(a)            #[[1, 2, 3], [4, 5, 6]]
+    print(a[0][0])      #1
+    print(a[1][2])      #6
+
+##### iterate two-dimensional list
+    a = [[1, 2, 3, 4], [5, 6], [7, 8, 9]]
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            print(a[i][j], end=' ')
+        print()
+
 #### String Functions
 - **format()**
 #####
     nums = [4,5,6]
+    #positional argument
     msg = 'numbers: {0}, {1}, {2}'.format(nums[0], nums[1], nums[2])    #numbers: 4, 5, 6
-
+#####
+    #keyword argument
     str = 'for sale: {a}{b}'.format(a = 'T', b='1')     #for sale: T1
+#####
+
+    animal = 'cow'
+    item = 'moon'
+    print('The {} jumped over the {}'.format(animal, item))             #The cow jumped over the moon
+    print('The {0} jumped over the {1}'.format(animal, item))           #The moon jumped over the cow
+    print('The {animal} jumped over the {item}'.format(animal='cow', item='moon'))              #The cow jumped over the moon
+    print("Hello. This is a {:10} with 5 chars space!".format('tab'))       #Hello. This is a tab        with 5 chars space!
+    print("Hello. This is a {:>10} with 5 chars space!".format('tab'))      #Hello. This is a        tab with 5 chars space!
+    print("Hello. This is a {:^10} with 5 chars space!".format('tab'))      #Hello. This is a    tab     with 5 chars space!
+    print("Hello. This is a {:<10} with 5 chars space!".format('tab'))      #Hello. This is a tab        with 5 chars space!
+
+#####
+
+    number = 3.14159
+    print("The number pi is {:.3f}".format(number))     #The number pi is 3.142
+    number = 100000
+    print("The number is {:,}".format(number))       #The number is 100,000
+    print("The number is {:b}".format(number))       #The number is 11000011010100000 (binary)
+    print("The number is {:o}".format(number))       #The number is 303240 (octal)
+    print("The number is {:X}".format(number))       #The number is 186A0 (hexadecimal)
+    print("The number is {:E}".format(number))       #The number is 1.000000E+05 (scientific notation)
 
 - **join()**
 #####
@@ -232,6 +322,24 @@ This imports all the names (functions, classes, variables) from the module into 
 - **str.count('o')**
 - **str.replace('e', 'a')**
 - **str*3**                 #Hello thereHello thereHello there
+
+
+## random
+
+### pseudo-random
+
+    import random
+
+    x = random.randint(1,6)
+    y = random.random()
+
+    myList = ['rock','paper','scissors']
+    z = random.choice(myList)
+
+    cards = [1,2,3,4,5,6,7,8,9,'J','Q','K','A']
+    random.shuffle(cards)
+    print(cards)
+
 
 
 ## Custom Functions
@@ -299,8 +407,15 @@ This imports all the names (functions, classes, variables) from the module into 
     #we always have to close it in order to save into the file. Otherwise it will be only in the buffer
 
 ##### we can do this way, and it will auto close the file when finish to write:
-    with open('file.txt', 'a') as f:
-        f.write('your test here\n')
+    try:
+        with open('file.txt', 'a') as f:
+            f.write('your test here\n')
+    except FileNotFoundError:
+        print('File not found')
+    except PermissionError:
+        print('You do not have permissions')
+    else:
+        print('done!')
 
     f.write('more text')    #this will get an error, because the file is already closed
 
@@ -325,8 +440,10 @@ This imports all the names (functions, classes, variables) from the module into 
 ##### Check if file exists, then delete it:
 
     import os
-    if os.path.exists("demofile.txt"):
-        os.remove("demofile.txt")
+    path = "C:\\User\\Desktop\\folder"
+    if os.path.exists(path):
+        if os.path.isfile(path)
+            os.remove("demofile.txt")
     else:
         print("The file does not exist")
 
@@ -336,6 +453,20 @@ This imports all the names (functions, classes, variables) from the module into 
     import os
     os.rmdir("myfolder")
 
+
+## shutil lib
+
+* copyfile() - copies contents of a file
+* copy() - copyfile() + permission mode + destination can be a directory
+* copy2() - copy() + copies metadata (file's creation and modification times)
+* rmtree() - delete a directory and containing files
+
+    import shutil
+
+    shutil.copyfile( <source>, <destination>)
+
+
+#
 
 ## Collection (List Constants & Dictionary)
 
@@ -421,20 +552,22 @@ This imports all the names (functions, classes, variables) from the module into 
 - Property Bag: C# and .Net
 
 #####
-    dict = {"Fri": 20, "Thu": 6, "Sat": 1}
-    dict["Thu"] = 13
-    dict["Sat"] = 2
-    dict["Sun"] = 9
+    d = {"Fri": 20, "Thu": 6, "Sat": 1}
+    d["Thu"] = 13
+    d["Sat"] = 2
+    d["Sun"] = 9
+    print(d)     #{'Fri': 20, 'Thu': 13, 'Sat': 2, 'Sun': 9}
 
-    print(dict)     #{'Fri': 20, 'Thu': 13, 'Sat': 2, 'Sun': 9}
-
+##### 
     d = dict()          # or d = {}
     d['age'] = 21
     d['name'] = 'John'
 
     print(d)            #{'age': 21, 'name': 'John'}
 
+#####
 #### Dictionary Functions
+
 - **get()**
 #####
     counts = { 'quincy' : 1 , 'mrugesh' : 42, 'beau': 100, '0': 10}
@@ -450,6 +583,17 @@ This imports all the names (functions, classes, variables) from the module into 
     #annie, 42
     #jan, 100
 
+##### more:
+    print(d.get('Fri'))     #20
+    print(d.keys())         #dict_keys(['Fri', 'Thu', 'Sat', 'Sun'])
+    print(d.values())       #dict_values([20, 13, 2, 9])
+    print(d.items())        #dict_items([('Fri', 20), ('Thu', 13), ('Sat', 2), ('Sun', 9)])
+    d.update({'Thu':'5'})
+    print(d)                #{'Fri': 20, 'Thu': '5', 'Sat': 2, 'Sun': 9}
+    d.pop('Sun')
+    print(d)                #{'Fri': 20, 'Thu': '5', 'Sat': 2}
+    d.clear()
+    print(d)                #{}
 
 ##### Two Iteration Variables
 
@@ -956,14 +1100,63 @@ Nothing yet
             super().append(value)
 
 
-### Relational Databases and SQLite
+### method chaining
+calling multiple methods sequentially
+each call performs an action on the same object and returns self
+    class Car:
+        def turn_on(self):
+            print('Engine start')
+            return self
+        
+        def drive(self):
+            print('Drive the car')
+            return self
+        
+        def turn_off(self):
+            print('Engine stop')
+            return self
 
-Nothing yet
+    car = Car()
 
+    car.turn_on().drive().turn_off()
+
+    #or
+    car.turn_on()\
+    drive()\
+    turn_off()
 
 
 ## *args and **kwargs
 
+***args**
+* Parameter that will pack all arguments into a tuple
+* Useful so that a function can accept a varying amount of arguments
+#####
+    def add(*stuff):
+        sum = 0
+        stuff = list(stuff)
+        for i in stuff:
+            sum += i
+        return sum
+
+    add(1,2,3,4,5,6)
+
+
+****kwargs**
+* Parameter that will pack all arguments into a dictionary
+* Useful so that a function can accept a varying amount of keyword arguments
+#####
+    def print_kwargs(**kwargs):
+        for key, value in kwargs.items():
+            print(f"{key}: {value}")
+
+    print_kwargs(name='John', age=25, city='New York')
+
+    #name: John
+    #age: 25
+    #city: New York
+
+#####
     def myFun(*args, **kwargs):
         print(args)
         print(kwargs)
@@ -978,6 +1171,7 @@ Nothing yet
 ### locals()
 
     def myFun(*args, **kwargs):
+        fun_name = "myFun"          #available only inside this function
         print(args)                 #(1, 2, 3)
         print(kwargs)               #{'param1': 'test'}
         print(locals())             #{'args': (1, 2, 3), 'kwargs': {'param1': 'test'}}
@@ -989,7 +1183,7 @@ Nothing yet
 ### globals()
     print(globals())
 
-    msg = "global variable"
+    msg = "global variable"         #available inside and outside functions
 
     def myFun(a, b):
         print(msg)      #global variable
@@ -1185,16 +1379,16 @@ Nothing yet
 
 ##### other way to do the same:
     with open('file.csv', 'r') as f:
-    reader = list(csv.reader(f, delimiter=';'))     #convert to list
-    for row in reader[1:]:                          #will skip 1st row (header)
-        print(row)
+        reader = list(csv.reader(f, delimiter=';'))     #convert to list
+        for row in reader[1:]:                          #will skip 1st row (header)
+            print(row)
 
 
     #convert to dictionary
     with open('file.csv', 'r') as f:
-    reader = csv.DictReader(f, delimiter=';')
-    for row in reader:                     
-        print(row)
+        reader = csv.DictReader(f, delimiter=';')
+        for row in reader:                     
+            print(row)
 
     #{'column1': value, 'column2': value, 'column3': value, 'column4': value, ...}
 
@@ -1337,6 +1531,25 @@ not when it's imported as a module.
 ***
 
 ## Code Samples
+
+###
+###### Request user input and try again until not provided
+    name = ""
+    while len(name) == 0:
+        name = input("Enter your name: ")
+    
+    print(name)
+
+#####
+    #or
+
+    name = None
+    while not name:
+        name = input("Enter your name: ")
+    
+    print(name)
+
+###
 
     def pay(hours, rate):
         if h > 40:
@@ -1722,3 +1935,5 @@ print(getCurrentTime())
 
 Prof. Charles Severance
 https://www.py4e.com/lessons
+
+[Python Full Course for free 🐍](https://www.youtube.com/watch?v=XKHEtdqhLK8&t=1235s&ab_channel=BroCode)
