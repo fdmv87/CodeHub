@@ -194,6 +194,8 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 ![Git_fig_3](https://github.com/fdmv87/CodeHub/assets/149420235/3ac6086a-b227-4fad-80d8-41f5edae9583)
 
+![Git_Commands_Cheat_Sheet](https://github.com/fdmv87/CodeHub/assets/149420235/64ea62c6-b470-4bf9-be63-078d8854a8ef)
+
 #### Creating Snapshots
 ##### Initializing a repository
     git init
