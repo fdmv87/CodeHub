@@ -1,4 +1,51 @@
-# GIT Config
+# GIT
+
+**usage**: 
+
+    git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
+           <command> [<args>]
+
+start a working area (see also: git help tutorial)
+
+    clone             Clone a repository into a new directory
+    init              Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+
+    add               Add file contents to the index
+    mv                Move or rename a file, a directory, or a symlink
+    restore           Restore working tree files
+    rm                Remove files from the working tree and from the index
+    sparse-checkout   Initialize and modify the sparse-checkout
+
+examine the history and state (see also: git help revisions)
+
+    bisect            Use binary search to find the commit that introduced a bug
+    diff              Show changes between commits, commit and working tree, etc
+    grep              Print lines matching a pattern
+    log               Show commit logs
+    show              Show various types of objects
+    status            Show the working tree status
+
+grow, mark and tweak your common history
+
+    branch            List, create, or delete branches
+    commit            Record changes to the repository
+    merge             Join two or more development histories together
+    rebase            Reapply commits on top of another base tip
+    reset             Reset current HEAD to the specified state
+    switch            Switch branches
+    tag               Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   
+    fetch             Download objects and refs from another repository
+    pull              Fetch from and integrate with another repository or a local branch
+    push              Update remote refs along with associated objects
 
 ## Inital basic configuration
 	git --version
@@ -8,7 +55,7 @@
 	git config --global core.editor "code --wait"
 	git config --global core.autocrlf input
 	git config --global -e
-
+ 	git config --list
 
 #### Create a new repository on the command line
 	git init
@@ -19,6 +66,7 @@
 	git remote add origin https://github.com/<repo>.git
 	git push -u origin main
 
+## GitHub config
 
 > **_NOTE:_** GitHub has deprecated password authentication for Git operations over HTTPS. To resolve this, you should switch to using either a Personal Access Token or SSH for authentication. Here's how you can do that:
 
@@ -188,6 +236,7 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 ##### commit do merge
     git commit --no-edit
 
+
 ***
 
 # Git Cheat Sheet
@@ -196,7 +245,6 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 ![Git_Commands_Cheat_Sheet](https://github.com/fdmv87/CodeHub/assets/149420235/64ea62c6-b470-4bf9-be63-078d8854a8ef)
 
-#### Creating Snapshots
 ##### Initializing a repository
     git init
 
@@ -252,3 +300,60 @@ In your local repository, you need to update the remote URL to use SSH. Use the 
 
 ##### Restoring an earlier version of a file
     git restore --source=HEAD~2 file.js
+
+##### .gitignore
+    add the files to be ignored by git
+    example, adding the following lines will ignore .bak files and temporary files:
+    *.bak
+    *~
+    
+##### .git-keep
+    used to track empty folders. If you have an empty folder and want to commit, you need to create the .git-keep file inside that empty folder.	
+    mkdir somefolder
+    cd somefolder
+    touch .git-keep
+
+##### Amend the last commit without changing the commit message
+    git commit --amend --no-edit
+
+##### Recovery a local deleted file by asking for it to Git
+    git checkout -- <filename>
+
+##### Recovery a deleted file after a git rm to the most recent commit or HEAD
+    git reset HEAD <filename>
+
+##### Recovery from a commit (changes on this commit has bugs for example or deletes a file)
+    git reset --hard HEAD^
+    git checkout -- <folder/filename>
+
+##### Creates a new commit that undoes everything that you just did
+    git revert --no-edit HEAD
+
+##### Revert to a specific commit. This will keep the commit log
+    git checkout <commit_hash> .
+
+##### Create pull requests (git request-pull)
+    git request-pull -p origin/main .
+    #This pull request is essentially the same thing as a pull request on GitHub
+
+##### git pull
+    git request-pull -p origin/main .
+    #git pull is a combination of git fetch, which gets the changes, and git merge, which merges those changes into your repository.
+
+##### **HEAD**
+1. **Current Commit**: HEAD always points to the latest commit in the branch you are currently working on. If you switch branches, HEAD will be updated to point to the latest commit of the newly checked-out branch.
+
+2. **Working Directory**: The commit that HEAD points to represents the version of the project that is currently in your working directory. Any changes you make will be applied to this version.
+
+3. **Detached HEAD State**: In Git, you can also have a "detached HEAD" state, where HEAD is not pointing to the latest commit of a branch but directly to a specific commit. This happens, for example, when you check out a specific commit, tag, or branch that is not the latest commit of a branch.
+
+4. **Branch Manipulation**: When you create a new commit, the branch that HEAD points to is updated to point to the new commit. This is how branches are moved forward in Git.
+
+5. **Symbolic Reference**: HEAD is a symbolic reference, meaning it points to another reference (like a branch name) rather than directly to a commit. This allows it to easily switch between different branches.
+
+
+
+## References
+[Introduction to Git by Microsoft](https://learn.microsoft.com/en-us/training/modules/intro-to-git/)
+[Introduction to Git Recap | Learn with Dr G](https://www.youtube.com/watch?v=9uGS1ak_FGg&ab_channel=MicrosoftDeveloper)
+
