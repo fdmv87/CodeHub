@@ -63,6 +63,9 @@ root folder:
     print(2-1) = 1
     print(1*2) = 2
     print(8/2) = 4.0
+    print(50//6) = 8    #any fractional part of the division is truncated, and only the whole number portion is retained.
+    print(2**6) = 64    #represents exponentiation
+
 
     import math
     pi = 3.14
@@ -466,8 +469,6 @@ root folder:
     shutil.copyfile( <source>, <destination>)
 
 
-#
-
 ## Collection (List Constants & Dictionary)
 
 ### Lists
@@ -688,15 +689,80 @@ root folder:
 
 
 ### List Comprehensions
+* a way to create a new list with less syntax
+* can mimic certain lambda functions, easier to read
+
+##### **list = [expression for item in iterable]**
+
+#####
+    #from this:
+    squares = []
+    for i in range(1,11):
+        squares.append(i * i)
+    print(squares)
+
+    #to this:
+    squares = [i *i for i in range(1,11)]
+#####
     myList = [1,2,3,4,5]
     [2*item for item in myList]
     #[2, 4, 6, 8, 10]
 
-### List Comprehensions with filters
+
+#### List Comprehensions with filters
+##### **list = [expression for item in iterable if conditional]**
     evens=[i*2 for i in range(10) if i*2 % 2 == 0]
     print(evens)
     #[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+#####
+    #from this:
+    students = [100,90,80,70,60,50,40,30,20,10,0]
+    passed_students = list(filter(lambda x: x >= 60, students))
+    print(passed_students)
+    
+    #to this:
+    passed_students = [i for i in students if i >= 60]
+#####
+##### **list = [expression (if/else) for item in iterable]**
+    passed_students = [i if i >= 60 else "FAILED" for i in students]
 
+
+### Dictionary Comprehension
+* create dictionaries using an expression
+* can replace for loops and certain lambda functions
+
+**dictionary = {key: expression for (key, value) in iterable}**
+
+    cities_in_F = {'New York': 32, 'Boston': 75, 'Los Angeles': 100, 'Chicago': 50}
+    #convert Fahrenheit to Celsius
+    cities_in_C = {key: round((value-32)*(5/9)) for (key, value) in cities_in_F.items()}
+    print(cities_in_C)
+
+**dictionary = {key: expression for (key, value) in iterable if conditional}**
+
+    weather = {'New York':'snowing', 'Boston':'sunny', 'Los Angeles':'sunny', 'Chicago':'cloudy'}
+    sunny_weather = {key: value for (key, value) in weather.items() if value == "sunny"}
+
+**dictionary = {key: expression (if/else) for (key, value) in iterable}**
+
+    cities = {'New York': 32, 'Boston': 75, 'Los Angeles': 100, 'Chicago': 50}
+    desc_cities = {key: ("WARM" if value >= 40 else "COLD") for (key, value) in cities.items()}
+    print(desc_cities)
+
+**dictionary = {key: function(value) for (key, value) in iterable}**
+
+    def check_temp(value):
+        if value >= 70:
+            return "HOT"
+        elif 70 > value >= 40:
+            return "WARM"
+        else:
+            return "COLD"    
+
+    cities = {'New York': 32, 'Boston': 75, 'Los Angeles': 100, 'Chicago': 50}
+    desc_cities = {key: check_temp(value) for (key, value) in cities.items()}
+    print(desc_cities)
+ 
 
 ### Collections Summary
 #### Dictionaries:
@@ -715,12 +781,230 @@ root folder:
 - when your data cannot change
 
 
-## Lambdas (aka anonymous function)
-    lambda (args : expression) (value)
+### Lambdas (aka anonymous function)
+##### **lambda expression:expression**
+##### **lambda (args : expression) (value)**
 
     (lambda x : x*5) (7)        #35
 
+    double = lambda x: x * 2
+    print(double(5))    #10
 
+    multiply = lambda x, y: x * y
+    print(multiply(5,6))    #30
+
+    add = lambda x, y, z: x + y + z
+    print(add(5,6,7))    #18
+
+    full_name = lambda first_name, last_name: first_name + " " + last_name
+    print(full_name('Homer','Simpson'))    #18
+
+    age_check = lambda age: True if age >=18 else False
+    print(age_check(12))
+
+### walrus operator :=
+- Python 3.8
+- assignment expression
+- assigns values to variables as part of a larger expression
+##### The next code can be replaced with walrus operatior
+    foods = list()
+    while True:
+        food = input('What food do you like?: ')
+        if food == "quit":
+            break
+        foods.append(food)
+#####
+    foods = list()
+    while food := input('What food do you like?: ') != "quit":
+        foods.append(food)
+
+### Sort list
+* sort() method - used with lists
+* sort() function - used with iterables
+#####
+
+    myList = [5, 6, 4, 3, 1]
+    sorted(myList)                  #[1, 3, 4, 5, 6]
+#####
+    simpsons = ["Homer", "Lisa", "Bart", "Maggie", "Marge"]
+    simpsons.sort(reverse=True)
+    print(simpsons)     #['Marge', 'Maggie', 'Lisa', 'Homer', 'Bart']
+
+#### Sort dictionary
+
+    myList = [{'num':5}, {'num':6}, {'num':4}, {'num':3}, {'num':1}]
+    sorted(myList, key=lambda x: x['num'])                      #[{'num': 1}, {'num': 3}, {'num': 4}, {'num': 5}, {'num': 6}]
+
+#### Sort tuple
+    simpsons = ("Homer", "Lisa", "Bart", "Maggie", "Marge")
+    sorted_simpsons = sorted(simpsons, reverse=True)
+
+#### Sort list of tuples
+
+    students = [("John", "F", 25),
+                ("Marie","A",35),
+                ("Jose","B",33),
+                ("Mark","C",27)]
+
+    #sort by Name (index 0)
+    students.sort()
+
+    for i in students:
+        print(i)
+#####
+    #sort by grade (index 1)
+    grade = lambda grades:grades[1]
+    students.sort(key=grade, reverse=True)
+
+    for i in students:
+        print(i)
+#####
+    #sort by age (index 2)
+    age = lambda ages:ages[2]
+    students.sort(key=age)
+
+    for i in students:
+        print(i)
+
+#### Sort tuple of tuples
+
+    students = (("John", "F", 25),
+                ("Marie","A",35),
+                ("Jose","B",33),
+                ("Mark","C",27))
+
+    age = lambda ages:ages[2]
+    sorted_students = sorted(students, key=age)
+
+    for i in students:
+        print(i)
+
+#####
+
+### map()
+applies a function to each item in an iterable (list, tuple, etc.)
+##### **map(function, iterable)**
+
+    store = [("shirt",20.00),
+            ("pants",25.00),
+            ("jacket",50.00),
+            ("socks",10.00)]
+    
+    rate = 0.82
+    to_euros = lambda data: (data[0],data[1]*rate)
+
+    store_euros = list(map(to_euros, store))
+
+    for i in store_euros:
+        print(i)
+
+### filter()
+creates a collection of elements from an iterable for which a function returns true
+#### **filter(function, iterable)**
+
+    friends = [("Rachel", 19),
+            ("Monica", 18),
+            ("Phoebe", 17),
+            ("Joey", 21),
+            ("Chandler", 20),
+            ("Ross", 16)]
+
+    #list of friends with 18 or over
+    age = lambda data:data[1] >= 18
+    
+    over18 = list(filter(age, friends))
+
+    for i in over18:
+        print(i)
+
+### reduce()
+apply a function to an iterable and reduce it to a single cumulative value.
+#####
+performs function on first two elements and repeats process until 1 value remains
+
+**reduce(function, iterable)**
+
+    import functools
+    letters = ["H", "E", "L", "L", "O"]
+    word = functools.reduce(lambda x, y, : x+ y, letters)
+    print(word)
+    #HELLO
+
+
+### zip(*iterables)
+- aggregate elemets from two or more iterables (list, tuples, sets, etc.)
+- creates a zip object with paired elements stored in tuples for each element
+#####
+    usernames = ["Homer", "Marge", "Bart"]
+    passwords = ("p@ssword", "abc123", "guest")
+
+    users = zip(usernames, passwords)
+
+    for i in users:
+        print(i)
+    #('Homer', 'p@ssword')
+    #('Marge', 'abc123')
+    #('Bart', 'guest')
+
+    #convert to dictionary
+    users = dict(zip(usernames, passwords))
+
+    for key, value in users.items():
+        print(key+" : "+value))
+    #Homer : p@ssword
+    #Marge : abc123
+    #Bart : guest
+#####
+    usernames = ["Homer", "Marge", "Bart"]
+    passwords = ("p@ssword", "abc123", "guest")
+    login_date = ["1/1/2021", "1/2/2021", "1/3/2021"]
+
+    users = zip(usernames, passwords, login_date)
+
+    for i in users:
+        print(i)
+    #('Homer', 'p@ssword', '1/1/2021')
+    #('Marge', 'abc123', '1/2/2021')
+    #('Bart', 'guest', '1/3/2021')
+
+
+### Time module
+##### convert a time expressed in seconds since epoch to a readable string
+##### epoch - when your computer thinks time began (reference point)
+
+    import time
+
+    print(time.ctime(0))                    #Thu Jan  1 00:00:00 1970
+    print(time.ctime(1700133187))           #Thu Nov 16 11:13:07 2023
+
+    print(time.time())                      #timestamp in seconds: 1700133347.1152933
+    print(time.ctime(time.time()))          #Thu Nov 16 11:16:40 2023
+
+    time_object = time.localtime()
+    print(time_object)                      #time.struct_time(tm_year=2023, tm_mon=11, tm_mday=16, tm_hour=11, tm_min=18, tm_sec=44, tm_wday=3, tm_yday=320, tm_isdst=0)
+    local_time = time.strftime("%B %d %Y %H:%M:%S", time_object)
+    print(local_time)                       #November 16 2023 11:20:27
+
+    #to force UTC time:
+    time_object = time.localtime()
+    time_obecjt = time.gmtime()
+    local_time = time.strftime("%B %d %Y %H:%M:%S", time_object)
+    print(local_time)
+#####
+    #create time object from string:
+    time_string = "20 April, 2020"
+    time_object = time.strptime(time_string, "%d %B, %Y")
+    print(time_object)                       #time.struct_time(tm_year=2020, tm_mon=4, tm_mday=20, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=0, tm_yday=111, tm_isdst=-1)
+#####
+    #from tuple representation of time to a string:
+    time_tuple = (2020, 4, 20, 4, 20, 0, 0, 0, 0)
+    time_string = time.asctime(time_tuple)
+    print(time_string)                      #Mon Apr 20 04:20:00 2020
+#####
+    #from tuple representation of time to seconds:
+    time_tuple = (2020, 4, 20, 4, 20, 0, 0, 0, 0)
+    time_string = time.mktime(time_tuple)
+    print(time_string)                      #1587356400.0
 
 ## Regular Expressions
     ^           matches the beginning of a line
@@ -1504,15 +1788,38 @@ functions calling themselves
         print("This function can be reused in other scripts.")
 
     if __name__ == '__main__':
-
-print("This code will only run when the script is the main program.")
-some_function()
+        print("This code will only run when the script is the main program.")
+    
+    some_function()
 
 In this example, some_function can be imported and used in other scripts, 
 but the print statement and the function call will only occur when this script is run directly, 
 not when it's imported as a module.
 
+example: having 2 modules, lets print the \_\_main\_\_ in each module, when executing module_two:
 
+**module_one.py**
+#####
+    print(__name__)
+
+**module_two.py** (execute this one: python3 module_two.py)
+#####
+    import module_one
+
+    print(__name__)
+    print(module_one.__name__)
+
+    #result:
+    #__main__
+    #module_one
+
+##### **Useful to know**
+##### 
+    def main():
+        print('write your main code here')
+
+    if __main__ == '__main__':
+        main()
 ## Placeholders
 
     def hello(name="John"):
@@ -1831,23 +2138,12 @@ or
 ###
 ##### get current time custom class
 
-from datetime import datetime
+    from datetime import datetime
 
-def getCurrentTime():
-    return datetime.now().strftime('%m-%d-%Y %H:%M:%S')
-    
-print(getCurrentTime())
-
-###
-##### Sort list
-
-    myList = [5, 6, 4, 3, 1]
-    sorted(myList)                  #[1, 3, 4, 5, 6]
-
-##### Sort dictionary
-
-    myList = [{'num':5}, {'num':6}, {'num':4}, {'num':3}, {'num':1}]
-    sorted(myList, key=lambda x: x['num'])                      #[{'num': 1}, {'num': 3}, {'num': 4}, {'num': 5}, {'num': 6}]
+    def getCurrentTime():
+        return datetime.now().strftime('%m-%d-%Y %H:%M:%S')
+        
+    print(getCurrentTime())
 
 ###
 
