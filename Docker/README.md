@@ -71,3 +71,8 @@ For Windows containers, another option is available: You can mount an SMB path a
 | EXPOSE	    | The ports on which the container listens
 | VOLUME	    | This instruction is to create a mount point
 | USER	        | An instruction to run RUN, CMD, and/or ENTRYPOINT instructions
+
+
+## Cheat Sheet:
+
+[docker-commands-cheat-sheet-pdf.pdf](https://github.com/fdmv87/CodeHub/files/13382480/docker-commands-cheat-sheet-pdf.pdf)
