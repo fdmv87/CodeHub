@@ -1591,7 +1591,132 @@ each call performs an action on the same object and returns self
     #ServerError: Status code: 500 and message is: Server is down
 
 
-## Threads
+## Threads (concurrently but not parallel)
+- Thread is a flow of execution. A separete order of instructions.
+- However each thread takes a turn running to achieve concurrency GLI (global interpreter lock), that allows only one thread to hold the control of the Python interpreter
+
+**cpu bound** 
+- program/task spends most of its time waiting for internal events (CPU intensice)
+- better use multiprocessing
+
+**io bound**
+- program/task spends most of its time waiting for external events (user inputs, web scraping)
+- better use multithreading
+
+#####
+counting active threads:
+
+    import threading
+    print(threading.active_count())
+
+#####
+print a list of all the threads that are running:
+
+    print(threading.enumerate())
+
+#####
+lets see an example of sequentially and concurrently:
+
+    import time
+
+    def eat_breakfast():
+        time.sleep(3)           #wait external event (io bound)
+        print('you eat breakfast')
+
+    def drink_coffee():
+        time.sleep(4)            #wait external event (io bound)
+        print('you drank coffee')
+
+    def study():
+        time.sleep(5)            #wait external event (io bound)
+        print('you finish studying')
+
+    eat_breakfast()
+    drink_coffee()
+    study()
+
+    #tasks will be executed sequentially
+    #12 seconds
+
+#####
+lets make it concurrently using Threads:
+
+    import threading
+    import time
+
+    def eat_breakfast():
+        time.sleep(3)
+        print('you eat breakfast')
+
+    def drink_coffee():
+        time.sleep(4)
+        print('you drank coffee')
+
+    def study():
+        time.sleep(5)
+        print('you finish studying')
+
+    #launchin 3 threads:
+
+    x = threading.Thread(target=eat_breakfast, args=())
+    x.start()
+
+    y = threading.Thread(target=drink_coffee, args=())
+    y.start()
+
+    z = threading.Thread(target=study, args=())
+    z.start()
+
+    print(threading.active_count())
+    print(threading.enumerate())
+    print(time.perf_counter())          #how long the main takes to finish
+    
+    #5seconds to finish all the 3 threads and the main program
+
+    #our main program will launch 3 threads, but will not wait for them.
+
+#####
+lets improve this, by wmaking the main waiting for the Threads to finish:
+
+    import threading
+    import time
+
+    def eat_breakfast():
+        time.sleep(3)
+        print('you eat breakfast')
+
+    def drink_coffee():
+        time.sleep(4)
+        print('you drank coffee')
+
+    def study():
+        time.sleep(5)
+        print('you finish studying')
+
+    #launchin 3 threads:
+
+    x = threading.Thread(target=eat_breakfast, args=())
+    x.start()
+
+    y = threading.Thread(target=drink_coffee, args=())
+    y.start()
+
+    z = threading.Thread(target=study, args=())
+    z.start()
+
+    x.join()
+    y.join()
+    z.join()
+
+    print(threading.active_count())
+    print(threading.enumerate())
+    print(time.perf_counter())
+
+    # ~5 seconds to finish main and the 3 Threads
+
+#####
+other examples:
+
     import threading
     import time
 
@@ -1611,7 +1736,6 @@ each call performs an action on the same object and returns self
 
     print(results)
 
-
 ##### improving this
     
     import threading
@@ -1627,10 +1751,136 @@ each call performs an action on the same object and returns self
     [t.join() for t in threads]
     print(results)
 
+## Deamon thread
+- runs in the background, not important for the program to run
+- your program will not wait for daemon threads to complete before exiting
+- non-daemon threads cannot normally be killed, stay alive until task is completed
 
-## Multiprocessing
+ex.: background tasks, garbage collection, waiting for input, long running processes
 
->pip install multiprocess
+example:
+
+    import threading
+    import time
+
+    #second thread will count how long somebody is logged in:
+    def timer():
+        print()
+        count = 0
+        while True:
+            time.sleep(1)
+            count += 1
+            print('logged in for ', count, 'seconds')
+
+    x = threding.Thread(target=timer)
+    x.start()
+
+    #main thread will be in charge for waiting user input:
+    answer = input('do you want to exit?')
+
+in this example, as soon the user enters an input, the main thread will finish but the 2nd thread will continue until we force the exit.
+
+we need to create a daemon thread in order to stop the thread when there is no more non-daemon alive.
+
+just add the **daemon=True**
+
+    import threading
+    import time
+
+    #second thread will count how long somebody is logged in:
+    def timer():
+        print()
+        count = 0
+        while True:
+            time.sleep(1)
+            count += 1
+            print('logged in for ', count, 'seconds')
+
+    x = threding.Thread(target=timer, daemon=True)
+    x.start()
+
+    #main thread will be in charge for waiting user input:
+    answer = input('do you want to exit?')
+
+additional methods:
+
+    x.setDaemon(True)       #must be called before the x.start() method
+    x.isDaemon()            #returns True or False
+
+
+## Multiprocessing (parallel)
+- running tasks in parallel on different cpu cores, bypasses GIL used for threading
+
+**multiprocessing**
+- better for CPU bound tasks (heavy cpu usage)
+
+**multithreading**
+- better for io bound tasks (waiting around)
+
+install the multiprocess first with the command:
+
+    >pip install multiprocess
+
+#####
+In the following example, we will count how long it takes to increment to 1000000000:
+
+    from multiprocessing import Process, cpu_count
+    import time
+
+    def counter(num):
+        count = 0
+        while count < num:
+            count += 1
+
+    def main():
+
+        a = Process(target=counter, args=(1000000000,))  #the arguments are tuple. We need to add the comma to differentiate this from an expression
+        a.start()
+        a.join()
+
+    #we need this to avoid child tasks to make a mess (mandatory in windows)
+    if __name__ = '__main__':
+        main()
+
+#####
+now, lets count how many CPUs are available in our computer (4) and distribute the work by them:
+
+    from multiprocessing import Process, cpu_count
+    import time
+
+    def counter(num):
+        count = 0
+        while count < num:
+            count += 1
+
+    def main():
+
+        print(cpu_count())  #4 CPU
+
+        a = Process(target=counter, args=(250000000,))
+        b = Process(target=counter, args=(250000000,))
+        c = Process(target=counter, args=(250000000,))
+        d = Process(target=counter, args=(250000000,))
+
+        a.start()
+        b.start()
+        c.start()
+        d.start()
+
+        a.join()
+        b.join()
+        c.join()
+        d.join()
+
+    if __name__ = '__main__':
+        main()
+
+
+**__NOTE__**
+Creating more child task than CPUs will take longer.
+
+#####
+other example:
 
     from multiprocessing import Process
     import time
