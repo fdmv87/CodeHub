@@ -51,6 +51,19 @@ bash <file_name>.sh
 ./<file_name>.sh
 ```
 
+## Arguments
+
+    ./script.sh $1 $2 $3...
+
+
+|Form | expands to.        |
+|-----|--------------------|
+|$*	  | $1 $2 $3...
+|$@	  | $1 $2 $3...
+|"$*" |	"$1 $2 $3..."
+|"$@" |	"$1" "$2" "$3"...
+
+
 ## Comments
 Comments start with a # in bash scripting
 
@@ -92,6 +105,63 @@ echo $country_name
 4. Variable names should not contain spaces or special characters.
 5. Use descriptive names that reflect the purpose of the variable.
 6. Avoid using reserved keywords, such as if, then, else, fi, and so on as variable names.
+
+
+## Arrays
+
+    name_of_array[x]=value
+
+#####
+
+The “declare” keyword can also be used to declare an array:
+
+    declare -a name_of_array
+
+#####
+
+To declare an associative array:
+
+    declare -A name_of_array
+
+#####
+
+    my_array=(1 2 3 4)
+    my_array=(jan feb mar apr)
+    my_array=([0]=’jan’ [1]=’feb’ [2]=’mar’ [3]=’apr’)
+    my_array=(‘seq 1 6’)
+
+    declare -a my_array
+    my_array[0]=’jan’
+    my_array[1]=’feb’
+
+
+#####
+
+    myArray=("cat" "dog" "mouse" "frog")
+
+    for str in ${myArray[@]}; do
+        echo $str
+    done
+    
+    #cat
+    #dog
+    #mouse
+    #frog
+
+
+## Functions
+
+    [ function ] name () { command-list; }
+
+    func ()
+    {
+        echo "$1"   # Echo the first arg passed to the function.
+    }
+
+    echo "==============================================="
+    echo
+    echo "Now call the above function passing the scripts first command-line argument."
+    func $1
 
 
 ## Reading user input
@@ -195,6 +265,11 @@ In a bash script or function, $1 denotes the initial argument passed, $2 denotes
     do
         echo $i
     done
+
+## until
+Execute consequent-commands as long as test-commands has an exit status which is not zero.
+    
+    until test-commands; do consequent-commands; done
 
 
 ## Case statement
@@ -343,6 +418,28 @@ Now that we have a basic understanding of the output redirection we can eliminat
 
     ls non_existing_file 2> stderr.txt
 
+
+| command                  | description        |
+|--------------------------|--------------------|
+| command  >  filename     | Redirect command output (stdout) into a file
+| command  >  /dev/null    | Discard stdout of command
+|  command 2> filename    | Redirect error output (stderr) to a file
+|  command 2>&1 filename  | Redirect stderr to stdout 
+|  command 1>&2 filename  | Redirect stdout to stderr
+|  command >> filename    | Redirect command output and APPEND into a file
+|  command < filename    | Redirect a file into a command
+|  commandA < (commandB)  | Redirect the output of commandB as file input to commandA
+|  commandA \| tee filename \| commandB    | Redirect commandA into filename AND commandB
+|  commandA \| commandB     | Redirect stdout of commandA to commandB
+|  commandA \|& commandB    | Redirect stdERR of commandA to commandB
+|  commandA & commandB     | Run commandA and then run commandB (asynchronous).
+|  commandA ; commandB     | Run commandA and afterwards run commandB (synchronous)
+|  commandA && commandB    | Run commandB only if commandA is successful  (synchronous AND)
+|  commandA \|\| commandB    | Run commandB only if commandA is NOT successful
+|  command &               | Run command in a subshell. If a command is terminated by the control operator &, the shell executes the command in the background in a subshell.
+|  command &> filename    | Redirect every output of command to filename
+
+
 ***
 
 # Samples
@@ -414,3 +511,5 @@ ls -l $output
 
 [https://www.freecodecamp.org/](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/#pre-requisites)
 [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
+[30 Bash Script Examples](https://linuxhint.com/30_bash_script_examples/#t3)
+[Bash How-to guides and examples](https://ss64.com/bash/syntax.html)
