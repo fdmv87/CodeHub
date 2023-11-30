@@ -1,6 +1,83 @@
-# Awk
+# awk
 
-Awk is a text-processing tool in Unix and Linux, mostly used for pattern scanning and processing.
+awk is a text-processing tool in Unix and Linux, mostly used for pattern scanning and processing.
+
+## Commonly Used Special Variables
+
+* **FS**    Field separator (default: a blank)
+* **NF**    Number of fields in current record
+* **NR**    Number of the current record
+* **OFS**   Output field separator (default: a blank)
+* **ORS**   Output record separator (default: a newline)
+* **RS**    Record separator (default: a newline)
+
+
+## Commands
+
+* **if** (conditional) statement [**else** statement]
+* **while** (conditional) statement
+* **for** (expression; conditional; expression) statement
+* **for** (variable in array) statement
+* **break**
+* **continue**
+* {**[statement]**}
+* **variable=expression**
+* **print[expression-list][> expression]**
+* **printf format [, expression-list][> expression]**
+* **next**
+* **exit**
+
+
+## General format of an awk script
+
+    BEGIN { action(s) }         # do actions before the line-by-line processing. i.e. at set up
+    pattern { action }          # for each line, check against the given pattern in the given order. If a match, perform the corresponding action
+    pattern { action }
+    ...
+    END { action(s) }           # do actions after the line-by-line processing.
+
+### awk script sample
+
+```bash
+#! /usr/bin/awk -f
+
+BEGIN {FS=";"}                  #delimiter is ;
+
+NR==1 {next;}                   #if number of row is 1, skip it (skip the header)
+$3 == "M" { print;count++;}     #if colunm 3 has M, print the record and increment the count
+
+END {print "The number of masculine nouns are ", count}
+```
+
+######
+
+to execute:
+
+    cat <filename> | script_name.awk
+
+## Arrays
+
+```bash
+#! /usr/bin/awk -f
+
+BEGIN {FS=";"}
+
+NR==1 {next;}
+
+$3 ~ /M/ {masc[$2]=$1}
+$3 ~ /F/ {fem[$2]=$1}
+
+END {
+
+print "\nMasculine Nouns\n";
+    for (x in masc)
+        { print x " - " masc[x] }
+print "\nFeminine Nouns\n";
+    for (y in fem)
+        { print y " - " fem[y] }
+}
+```
+
 
 ## print function
 
@@ -172,3 +249,4 @@ Awk is a text-processing tool in Unix and Linux, mostly used for pattern scannin
 ## References
 
 [Learning Awk Is Essential For Linux Users](https://www.youtube.com/watch?v=9YOZmI-zWok&t=66s&ab_channel=DistroTube)
+[Techniques with AWK](https://www.youtube.com/watch?v=rzXliWSTQPE&t=814s&ab_channel=DebraMcCusker)
