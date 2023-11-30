@@ -30,11 +30,11 @@ awk is a text-processing tool in Unix and Linux, mostly used for pattern scannin
 
 ## General format of an awk script
 
-    BEGIN { action(s) }         # do actions before the line-by-line processing. i.e. at set up
+    BEGIN { action(s) }         # do actions before the line-by-line processing. i.e. set up FS
     pattern { action }          # for each line, check against the given pattern in the given order. If a match, perform the corresponding action
     pattern { action }
     ...
-    END { action(s) }           # do actions after the line-by-line processing.
+    END { action(s) }           # do actions after the line-by-line processing. i.e. print the final result
 
 ### awk script sample
 
@@ -244,6 +244,11 @@ print "\nFeminine Nouns\n";
     "programming" has "o" character at position 3
 
 
+## printf function
+
+    awk -F '\t' \
+        '$1 == "Completed" { printf " The job %s is completed\n", $5 }' \
+        <filename> | head
 
 
 ## References
